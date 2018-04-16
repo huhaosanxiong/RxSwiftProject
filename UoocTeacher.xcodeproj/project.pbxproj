@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5292DD1B160C409450CEF375 /* Pods_UoocTeacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84B21BA7A833C3BB7A773B5 /* Pods_UoocTeacher.framework */; };
 		E1310A73208492A400144702 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1310A72208492A400144702 /* AppDelegate.swift */; };
 		E1310A7A208492A600144702 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1310A79208492A600144702 /* Assets.xcassets */; };
 		E1310A7D208492A600144702 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1310A7B208492A600144702 /* LaunchScreen.storyboard */; };
@@ -14,12 +15,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D84B21BA7A833C3BB7A773B5 /* Pods_UoocTeacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UoocTeacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1310A6F208492A400144702 /* UoocTeacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UoocTeacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1310A72208492A400144702 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1310A79208492A600144702 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1310A7C208492A600144702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E1310A7E208492A700144702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1310A8E208496EE00144702 /* ImageAsset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAsset.swift; sourceTree = "<group>"; };
+		E2A99EBC67F6E3CD7AC3CDF1 /* Pods-UoocTeacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UoocTeacher.release.xcconfig"; path = "Pods/Target Support Files/Pods-UoocTeacher/Pods-UoocTeacher.release.xcconfig"; sourceTree = "<group>"; };
+		F783A800AA8BC379270AE0BC /* Pods-UoocTeacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UoocTeacher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UoocTeacher/Pods-UoocTeacher.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,17 +31,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5292DD1B160C409450CEF375 /* Pods_UoocTeacher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B1A77988B4C254CCBE95F75 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F783A800AA8BC379270AE0BC /* Pods-UoocTeacher.debug.xcconfig */,
+				E2A99EBC67F6E3CD7AC3CDF1 /* Pods-UoocTeacher.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A5FAB5BDFAB6C9BD106F59CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D84B21BA7A833C3BB7A773B5 /* Pods_UoocTeacher.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E1310A66208492A400144702 = {
 			isa = PBXGroup;
 			children = (
 				E1310A71208492A400144702 /* UoocTeacher */,
 				E1310A70208492A400144702 /* Products */,
+				1B1A77988B4C254CCBE95F75 /* Pods */,
+				A5FAB5BDFAB6C9BD106F59CF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,10 +164,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E1310A81208492A700144702 /* Build configuration list for PBXNativeTarget "UoocTeacher" */;
 			buildPhases = (
+				9F7FCC90B0EEE00566AA1B76 /* [CP] Check Pods Manifest.lock */,
 				E1310A6B208492A400144702 /* Sources */,
 				E1310A6C208492A400144702 /* Frameworks */,
 				E1310A6D208492A400144702 /* Resources */,
 				E1310A8D208495D500144702 /* ShellScript */,
+				BD06EBCF72E1D96913407B14 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -200,6 +226,62 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		9F7FCC90B0EEE00566AA1B76 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UoocTeacher-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD06EBCF72E1D96913407B14 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-UoocTeacher/Pods-UoocTeacher-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/QMUIKit/QMUIKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QMUIKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UoocTeacher/Pods-UoocTeacher-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E1310A8D208495D500144702 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -355,15 +437,13 @@
 		};
 		E1310A82208492A700144702 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F783A800AA8BC379270AE0BC /* Pods-UoocTeacher.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = UoocTeacher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uooc.UoocTeacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -373,15 +453,13 @@
 		};
 		E1310A83208492A700144702 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2A99EBC67F6E3CD7AC3CDF1 /* Pods-UoocTeacher.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = UoocTeacher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uooc.UoocTeacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
