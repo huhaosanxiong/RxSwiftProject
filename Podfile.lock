@@ -3,11 +3,19 @@ PODS:
   - HandyJSON (4.0.0-beta.1)
   - Hero (1.0.1)
   - Kingfisher (4.6.1)
-  - Moya (10.0.1):
-    - Moya/Core (= 10.0.1)
-  - Moya/Core (10.0.1):
+  - Material (2.13.4):
+    - Material/Core (= 2.13.4)
+  - Material/Core (2.13.4):
+    - Motion (~> 1.3.0)
+  - Motion (1.3.3):
+    - Motion/Core (= 1.3.3)
+  - Motion/Core (1.3.3)
+  - Moya/Core (11.0.2):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
+  - Moya/RxSwift (11.0.2):
+    - Moya/Core
+    - RxSwift (~> 4.0)
   - QMUIKit (2.3.0):
     - QMUIKit/QMUIComponents (= 2.3.0)
     - QMUIKit/QMUICore (= 2.3.0)
@@ -211,7 +219,8 @@ DEPENDENCIES:
   - HandyJSON (~> 4.0.0-beta.1)
   - Hero (from `https://github.com/lkzhao/Hero.git`, commit `a5bec96`)
   - Kingfisher (~> 4.6.0)
-  - Moya
+  - Material
+  - Moya/RxSwift (~> 11.0)
   - QMUIKit
   - RxBlocking
   - RxCocoa
@@ -223,6 +232,8 @@ SPEC REPOS:
     - Alamofire
     - HandyJSON
     - Kingfisher
+    - Material
+    - Motion
     - Moya
     - QMUIKit
     - Result
@@ -246,7 +257,9 @@ SPEC CHECKSUMS:
   HandyJSON: 428bb18e2c34c2a77361accebf90cf64e4f74118
   Hero: a1a9d96f3174190486984739d7ed5101d39416f1
   Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
-  Moya: 9e621707ff754eeb51ff3ec51a3d54e517c0733a
+  Material: e7db2ee1aac9154a48c86921836578fffce41728
+  Motion: 171fae75e927306cf906ab579ab5ac99d291658f
+  Moya: a725035953bc1c0eb1be505ab903984501d82440
   QMUIKit: 0781d39ab0e7adb5c05bcee4e3f3d1cfc79f5b8e
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxBlocking: 22e7d7b86a1c0c42164a30d64f56f97128b4ffab
@@ -254,6 +267,6 @@ SPEC CHECKSUMS:
   RxSwift: c6e3b1c7b325c7d121cd4327e9d98b7ed746b570
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: f5a97b3def4d07e43d56c431f0d20a1bd4a50476
+PODFILE CHECKSUM: c73315caa6f01aa16dada07ddaef71fb64044a2c
 
 COCOAPODS: 1.5.0.beta.1

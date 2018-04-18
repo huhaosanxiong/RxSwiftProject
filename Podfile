@@ -13,9 +13,9 @@ target 'UoocTeacher' do
     pod 'RxSwift'
     pod 'RxCocoa'
     pod 'RxBlocking'
-    pod 'Moya'
+    pod 'Moya/RxSwift', '~> 11.0'
     pod "Hero", :git => 'https://github.com/lkzhao/Hero.git', :commit => "a5bec96"
-    
+    pod 'Material'
     pod 'SnapKit'
     
     #Objective-C
@@ -23,10 +23,10 @@ target 'UoocTeacher' do
     
 end
 
-post_install do |installer|
-    installer.pods_project.targets.each do |target|
-        target.build_configurations.each do |config|
-            config.build_settings['SWIFT_VERSION'] = '3.0'
-        end
-    end
-end
+#post_install do |installer|
+#    installer.pods_project.targets.each do |target|
+#        target.build_configurations.each do |config|
+#            config.build_settings['SWIFT_VERSION'] = '3.0'
+#        end
+#    end
+#end
