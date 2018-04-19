@@ -22,6 +22,7 @@
 		E16F7B4520874C0A00CE9F3D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16F7B4420874C0A00CE9F3D /* Model.swift */; };
 		E16F7B6B20879FE800CE9F3D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16F7B6A20879FE800CE9F3D /* ViewModel.swift */; };
 		E16F7B6F2088443F00CE9F3D /* RxSwift+Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16F7B6E2088443F00CE9F3D /* RxSwift+Observable.swift */; };
+		E1D39F092088A77200D968C8 /* ApiManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D39F082088A77200D968C8 /* ApiManagerService.swift */; };
 		E1DE1EE72085D3D30000FDBE /* UOCDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DE1EE62085D3D30000FDBE /* UOCDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		E16F7B4420874C0A00CE9F3D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E16F7B6A20879FE800CE9F3D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		E16F7B6E2088443F00CE9F3D /* RxSwift+Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxSwift+Observable.swift"; sourceTree = "<group>"; };
+		E1D39F082088A77200D968C8 /* ApiManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManagerService.swift; sourceTree = "<group>"; };
 		E1DE1EE62085D3D30000FDBE /* UOCDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOCDetailViewController.swift; sourceTree = "<group>"; };
 		E2A99EBC67F6E3CD7AC3CDF1 /* Pods-UoocTeacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UoocTeacher.release.xcconfig"; path = "Pods/Target Support Files/Pods-UoocTeacher/Pods-UoocTeacher.release.xcconfig"; sourceTree = "<group>"; };
 		F783A800AA8BC379270AE0BC /* Pods-UoocTeacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UoocTeacher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UoocTeacher/Pods-UoocTeacher.debug.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		E1310A892084955A00144702 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
+				E1D39F082088A77200D968C8 /* ApiManagerService.swift */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				E16F7B4120872B6B00CE9F3D /* UOCSecondViewController.swift in Sources */,
 				E1310A912084A36800144702 /* ThirdParty.swift in Sources */,
 				E16F7B3F2087281400CE9F3D /* APIService.swift in Sources */,
+				E1D39F092088A77200D968C8 /* ApiManagerService.swift in Sources */,
 				E16F7B6B20879FE800CE9F3D /* ViewModel.swift in Sources */,
 				E16F7B6F2088443F00CE9F3D /* RxSwift+Observable.swift in Sources */,
 				E1310AA82084B35500144702 /* UOCNavigationViewController.swift in Sources */,

@@ -10,23 +10,18 @@ import Foundation
 import Moya
 import Result
 
-private func JSONResponseDataFormatter(_ data: Data) -> Data {
-    do {
-        let dataAsJSON = try JSONSerialization.jsonObject(with: data)
-        let prettyData =  try JSONSerialization.data(withJSONObject: dataAsJSON, options: .prettyPrinted)
-        return prettyData
-    } catch {
-        return data //fallback to original data if it cant be serialized
-    }
-}
-// MARK: - Provider support
-private extension String {
-    var urlEscapedString: String {
-        return self.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-    }
-}
+let APIProvider = MoyaProvider<APIService>.init(requestClosure: requestClosure,
+                                                plugins:[NetworkLoggerPlugin(verbose: true, responseDataFormatter: JSONResponseDataFormatter),
+                                                         RequestLoadingPlugin.init(viewController: UIViewController())])
 
 public final class RequestLoadingPlugin: PluginType {
+    
+    private let viewController: UIViewController
+    
+    init(viewController: UIViewController) {
+        self.viewController = viewController
+    }
+    
     
     public func willSend(_ request: RequestType, target: TargetType) {
         // show loading
@@ -37,12 +32,8 @@ public final class RequestLoadingPlugin: PluginType {
         // hide loading
         print("请求完成")
     }
-    
 }
 
-let APIProvider = MoyaProvider<APIService>(plugins:[NetworkLoggerPlugin(verbose: true, responseDataFormatter: JSONResponseDataFormatter),RequestLoadingPlugin()])
-
-//let APIProvider = MoyaProvider<APIService>()
 
 enum APIService {
     case appOperation(code:String)
@@ -57,7 +48,7 @@ extension APIService : TargetType {
     var path: String {
         switch self {
         case .appOperation(_):
-            return "/index/appOperation"
+            return "/index/appOperation1"
         case .login(let username, let password):
             return "/\(username)/\(password)"
         }
@@ -99,8 +90,4 @@ extension APIService : TargetType {
     
 }
 
-private extension String {
-    var utf8Encoded: Data {
-        return data(using: .utf8)!
-    }
-}
+

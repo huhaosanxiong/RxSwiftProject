@@ -39,10 +39,20 @@ class ActivityModel: HandyJSON {
     }
 }
 
+class AppCourseModel: HandyJSON {
+    
+    var app_course : [ActivityModel] = [ActivityModel]()
+    
+    required init() {
+        
+    }
+    
+}
+
 class BaseModel: HandyJSON {
     
     var code: Int = 0
-    var data: Any = [ActivityModel]()
+    var data: Any?
     var msg: String?
     
     required init() {

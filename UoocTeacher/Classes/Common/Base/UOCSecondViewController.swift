@@ -29,7 +29,8 @@ class UOCSecondViewController: BaseViewController {
         
 //        action1()
 //        action2()
-        action3()
+//        action3()
+        action4()
     }
     
     func action1() {
@@ -86,11 +87,6 @@ class UOCSecondViewController: BaseViewController {
     
     func action3() {
         
-//        VM.login("ahha", "123456").subscribe(onNext: { (model) in
-//            print(model)
-//        }).disposed(by: bag)
-        
-        
         VM.getAppOperation("app_course").subscribe(onNext: { (array) in
             print("array = \(array)")
             for model in array {
@@ -101,8 +97,34 @@ class UOCSecondViewController: BaseViewController {
         }, onCompleted: {
             print("complete")
         }).disposed(by: bag)
+    }
+    
+    func action4() {
         
-        
+        VM.getAppOperationByMapObject("app_course").retry(3)
+            .subscribe(onNext: { (model) in
+            print("model = \(model)")
+            for model in model.app_course {
+                print(model.activity1_title ?? "none")
+            }
+        }, onError: { (error) in
+            //处理throw异常
+            guard let rxError = error as? RxSwiftMoyaError else { return }
+            switch rxError {
+            case .UnexpectedResult(let resultCode, let resultMsg):
+                print("code = \(resultCode!),msg = \(resultMsg!)")
+            default :
+                print("网络故障")
+            }
+//            if case let RxSwiftMoyaError.UnexpectedResult(resultCode: code, resultMsg: msg) = error {
+//                print("code = \(code!),msg = \(msg!)")
+//            }else{
+//                print("网络故障")
+//            }
+            print(error)
+        }, onCompleted: {
+            
+        }).disposed(by: bag)
     }
 
     override func didReceiveMemoryWarning() {

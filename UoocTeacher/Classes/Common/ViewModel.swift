@@ -23,6 +23,7 @@ class ViewModel {
 
     }
     
+    //手动转 ，与oc类似
     func getAppOperation(_ code: String) -> Observable<[ActivityModel]> {
         
         return APIProvider.rx.request(.appOperation(code: code))
@@ -61,9 +62,18 @@ class ViewModel {
                 }else{
                     throw RxSwiftMoyaError.ParseJSONError
                 }
-                
-                
         }
+    }
+    
+    
+    
+    //通过mapObject 去 json -> model
+    func getAppOperationByMapObject(_ code :String) -> Observable<AppCourseModel> {
+        
+        return APIProvider.rx.request(.appOperation(code: code))
+        .asObservable()
+        .filterSuccessfulStatusCodes()
+        .mapObject(type: AppCourseModel.self)
     }
 }
 
