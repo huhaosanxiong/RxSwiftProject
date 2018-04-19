@@ -23,8 +23,6 @@ class BaseViewController: QMUICommonViewController {
     
     var pushButton : UIButton!
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +49,7 @@ class BaseViewController: QMUICommonViewController {
     
     override func initSubviews() {
         
+        
         pushButton = UIButton.init(type: .system)
         pushButton.setTitle("Push", for: .normal)
         pushButton.setTitleColor(UIColor.white, for: .normal)
@@ -67,7 +66,7 @@ class BaseViewController: QMUICommonViewController {
             self.navigationController?.pushViewController(vc, animated: true)
             
         }).disposed(by: disposeBag)
-
+        
         
     }
     

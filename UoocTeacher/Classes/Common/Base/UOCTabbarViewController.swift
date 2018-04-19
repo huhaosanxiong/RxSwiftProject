@@ -21,7 +21,7 @@ class UOCTabbarViewController: UITabBarController {
         
         let arr = [
             BaseViewController.init(),
-            BaseViewController.init(),
+            UOCSecondViewController.init(),
             BaseViewController.init()
         ]
         

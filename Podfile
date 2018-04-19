@@ -8,7 +8,7 @@ target 'UoocTeacher' do
     #Swift
     pod 'Alamofire'
     pod 'Kingfisher' , '~> 4.6.0'
-    pod 'HandyJSON', '~> 4.0.0-beta.1'
+    pod 'HandyJSON'
     
     pod 'RxSwift'
     pod 'RxCocoa'
