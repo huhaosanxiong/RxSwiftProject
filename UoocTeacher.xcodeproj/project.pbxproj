@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D53569A2089EE34009DA1C5 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5356992089EE34009DA1C5 /* QMUIConfigurationTemplate.m */; };
 		5292DD1B160C409450CEF375 /* Pods_UoocTeacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84B21BA7A833C3BB7A773B5 /* Pods_UoocTeacher.framework */; };
 		E1310A73208492A400144702 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1310A72208492A400144702 /* AppDelegate.swift */; };
 		E1310A7A208492A600144702 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1310A79208492A600144702 /* Assets.xcassets */; };
 		E1310A7D208492A600144702 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1310A7B208492A600144702 /* LaunchScreen.storyboard */; };
 		E1310A8F208496EE00144702 /* ImageAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1310A8E208496EE00144702 /* ImageAsset.swift */; };
 		E1310A912084A36800144702 /* ThirdParty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1310A902084A36800144702 /* ThirdParty.swift */; };
-		E1310AA12084ABDA00144702 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1310AA02084ABDA00144702 /* QMUIConfigurationTemplate.m */; };
 		E1310AA42084B0BB00144702 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1310AA32084B0BB00144702 /* BaseViewController.swift */; };
 		E1310AA62084B27000144702 /* UOCTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1310AA52084B27000144702 /* UOCTabbarViewController.swift */; };
 		E1310AA82084B35500144702 /* UOCNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1310AA72084B35500144702 /* UOCNavigationViewController.swift */; };
@@ -27,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D5356982089EE34009DA1C5 /* QMUIConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplate.h; sourceTree = "<group>"; };
+		1D5356992089EE34009DA1C5 /* QMUIConfigurationTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplate.m; sourceTree = "<group>"; };
 		D84B21BA7A833C3BB7A773B5 /* Pods_UoocTeacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UoocTeacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1310A6F208492A400144702 /* UoocTeacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UoocTeacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1310A72208492A400144702 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,8 +38,6 @@
 		E1310A8E208496EE00144702 /* ImageAsset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAsset.swift; sourceTree = "<group>"; };
 		E1310A902084A36800144702 /* ThirdParty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdParty.swift; sourceTree = "<group>"; };
 		E1310A9A2084A9A100144702 /* UoocTeacher-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UoocTeacher-Bridging-Header.h"; sourceTree = "<group>"; };
-		E1310A9F2084ABDA00144702 /* QMUIConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplate.h; sourceTree = "<group>"; };
-		E1310AA02084ABDA00144702 /* QMUIConfigurationTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplate.m; sourceTree = "<group>"; };
 		E1310AA32084B0BB00144702 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		E1310AA52084B27000144702 /* UOCTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOCTabbarViewController.swift; sourceTree = "<group>"; };
 		E1310AA72084B35500144702 /* UOCNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOCNavigationViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +72,16 @@
 			);
 			name = Pods;
 			sourceTree = "<group>";
+		};
+		1D5356972089EE34009DA1C5 /* QMUIConfigurationTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				1D5356982089EE34009DA1C5 /* QMUIConfigurationTemplate.h */,
+				1D5356992089EE34009DA1C5 /* QMUIConfigurationTemplate.m */,
+			);
+			name = QMUIConfigurationTemplate;
+			path = Pods/QMUIKit/QMUIConfigurationTemplate;
+			sourceTree = SOURCE_ROOT;
 		};
 		A5FAB5BDFAB6C9BD106F59CF /* Frameworks */ = {
 			isa = PBXGroup;
@@ -187,20 +197,10 @@
 		E1310A8C2084955A00144702 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				E1310A9E2084ABDA00144702 /* QMUIConfigurationTemplate */,
+				1D5356972089EE34009DA1C5 /* QMUIConfigurationTemplate */,
 			);
 			path = ThirdParty;
 			sourceTree = "<group>";
-		};
-		E1310A9E2084ABDA00144702 /* QMUIConfigurationTemplate */ = {
-			isa = PBXGroup;
-			children = (
-				E1310A9F2084ABDA00144702 /* QMUIConfigurationTemplate.h */,
-				E1310AA02084ABDA00144702 /* QMUIConfigurationTemplate.m */,
-			);
-			name = QMUIConfigurationTemplate;
-			path = Pods/QMUIKit/QMUIConfigurationTemplate;
-			sourceTree = SOURCE_ROOT;
 		};
 		E1310AA22084B09D00144702 /* Base */ = {
 			isa = PBXGroup;
@@ -367,10 +367,10 @@
 			files = (
 				E1310AA42084B0BB00144702 /* BaseViewController.swift in Sources */,
 				E1DE1EE72085D3D30000FDBE /* UOCDetailViewController.swift in Sources */,
+				1D53569A2089EE34009DA1C5 /* QMUIConfigurationTemplate.m in Sources */,
 				E1310A8F208496EE00144702 /* ImageAsset.swift in Sources */,
 				E16F7B4520874C0A00CE9F3D /* Model.swift in Sources */,
 				E1310A73208492A400144702 /* AppDelegate.swift in Sources */,
-				E1310AA12084ABDA00144702 /* QMUIConfigurationTemplate.m in Sources */,
 				E1310AA62084B27000144702 /* UOCTabbarViewController.swift in Sources */,
 				E16F7B4120872B6B00CE9F3D /* UOCSecondViewController.swift in Sources */,
 				E1310A912084A36800144702 /* ThirdParty.swift in Sources */,
@@ -516,7 +516,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 9P6269MA4E;
 				INFOPLIST_FILE = UoocTeacher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -525,6 +526,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.uooc.UoocTeacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1707a773-00b4-40f0-ae43-ad07ebb8312d";
+				PROVISIONING_PROFILE_SPECIFIER = Teacher_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "UoocTeacher/Classes/Util/Reference/UoocTeacher-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -538,7 +541,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 9P6269MA4E;
 				INFOPLIST_FILE = UoocTeacher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -547,6 +551,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.uooc.UoocTeacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1707a773-00b4-40f0-ae43-ad07ebb8312d";
+				PROVISIONING_PROFILE_SPECIFIER = Teacher_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "UoocTeacher/Classes/Util/Reference/UoocTeacher-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
