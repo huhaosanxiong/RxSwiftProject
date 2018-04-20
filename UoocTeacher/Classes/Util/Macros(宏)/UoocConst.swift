@@ -8,14 +8,6 @@
 
 import UIKit
 
-
-enum uoocType:Int {
-    case classtype = 0
-    
-    case teachertype = 1
-    
-}
-
 /// 屏幕的宽
 let MAXWIDTH = UIScreen.main.bounds.size.width
 /// 屏幕的高
