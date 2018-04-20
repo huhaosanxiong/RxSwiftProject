@@ -75,5 +75,13 @@ class ViewModel {
         .filterSuccessfulStatusCodes()
         .mapObject(type: AppCourseModel.self)
     }
+    
+    func getAppOperationByMapObjectAsSingle(_ code :String) -> Single<AppCourseModel> {
+        return APIProvider.rx.request(.appOperation(code: code))
+            .asObservable()
+            .filterSuccessfulStatusCodes()
+            .mapObject(type: AppCourseModel.self)
+            .asSingle()
+    }
 }
 
