@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D9B91B32089F24A001216FC /* UoocConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B91B22089F24A001216FC /* UoocConst.swift */; };
+		1D9B91B52089F931001216FC /* UoocConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B91B42089F931001216FC /* UoocConst.swift */; };
 		5292DD1B160C409450CEF375 /* Pods_UoocTeacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84B21BA7A833C3BB7A773B5 /* Pods_UoocTeacher.framework */; };
 		E1310A73208492A400144702 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1310A72208492A400144702 /* AppDelegate.swift */; };
 		E1310A7A208492A600144702 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1310A79208492A600144702 /* Assets.xcassets */; };
@@ -29,7 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D9B91B22089F24A001216FC /* UoocConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UoocConst.swift; sourceTree = "<group>"; };
+		1D9B91B42089F931001216FC /* UoocConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UoocConst.swift; sourceTree = "<group>"; };
 		D84B21BA7A833C3BB7A773B5 /* Pods_UoocTeacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UoocTeacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1310A6F208492A400144702 /* UoocTeacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UoocTeacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1310A72208492A400144702 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		1D9B91B12089F235001216FC /* Macros(宏) */ = {
 			isa = PBXGroup;
 			children = (
-				1D9B91B22089F24A001216FC /* UoocConst.swift */,
+				1D9B91B42089F931001216FC /* UoocConst.swift */,
 			);
 			path = "Macros(宏)";
 			sourceTree = "<group>";
@@ -386,7 +386,7 @@
 				E1310A73208492A400144702 /* AppDelegate.swift in Sources */,
 				E1310AA12084ABDA00144702 /* QMUIConfigurationTemplate.m in Sources */,
 				E1310AA62084B27000144702 /* UOCTabbarViewController.swift in Sources */,
-				1D9B91B32089F24A001216FC /* UoocConst.swift in Sources */,
+				1D9B91B52089F931001216FC /* UoocConst.swift in Sources */,
 				E16F7B4120872B6B00CE9F3D /* UOCSecondViewController.swift in Sources */,
 				E1310A912084A36800144702 /* ThirdParty.swift in Sources */,
 				E1B74FCE2089EF10009ABE7E /* NilSwift.swift in Sources */,
