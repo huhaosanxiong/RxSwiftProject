@@ -48,7 +48,7 @@ extension APIService : TargetType {
     var path: String {
         switch self {
         case .appOperation(_):
-            return "/index/appOperation1"
+            return "/index/appOperation"
         case .login(let username, let password):
             return "/\(username)/\(password)"
         }

@@ -22,6 +22,7 @@
 		E16F7B4520874C0A00CE9F3D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16F7B4420874C0A00CE9F3D /* Model.swift */; };
 		E16F7B6B20879FE800CE9F3D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16F7B6A20879FE800CE9F3D /* ViewModel.swift */; };
 		E16F7B6F2088443F00CE9F3D /* RxSwift+Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16F7B6E2088443F00CE9F3D /* RxSwift+Observable.swift */; };
+		E1B74FCE2089EF10009ABE7E /* NilSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B74FCD2089EF10009ABE7E /* NilSwift.swift */; };
 		E1D39F092088A77200D968C8 /* ApiManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D39F082088A77200D968C8 /* ApiManagerService.swift */; };
 		E1DE1EE72085D3D30000FDBE /* UOCDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DE1EE62085D3D30000FDBE /* UOCDetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -46,6 +47,7 @@
 		E16F7B4420874C0A00CE9F3D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E16F7B6A20879FE800CE9F3D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		E16F7B6E2088443F00CE9F3D /* RxSwift+Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxSwift+Observable.swift"; sourceTree = "<group>"; };
+		E1B74FCD2089EF10009ABE7E /* NilSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilSwift.swift; sourceTree = "<group>"; };
 		E1D39F082088A77200D968C8 /* ApiManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManagerService.swift; sourceTree = "<group>"; };
 		E1DE1EE62085D3D30000FDBE /* UOCDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOCDetailViewController.swift; sourceTree = "<group>"; };
 		E2A99EBC67F6E3CD7AC3CDF1 /* Pods-UoocTeacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UoocTeacher.release.xcconfig"; path = "Pods/Target Support Files/Pods-UoocTeacher/Pods-UoocTeacher.release.xcconfig"; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				E1310A9E2084ABDA00144702 /* QMUIConfigurationTemplate */,
+				E1B74FCD2089EF10009ABE7E /* NilSwift.swift */,
 			);
 			path = ThirdParty;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				E1310AA62084B27000144702 /* UOCTabbarViewController.swift in Sources */,
 				E16F7B4120872B6B00CE9F3D /* UOCSecondViewController.swift in Sources */,
 				E1310A912084A36800144702 /* ThirdParty.swift in Sources */,
+				E1B74FCE2089EF10009ABE7E /* NilSwift.swift in Sources */,
 				E16F7B3F2087281400CE9F3D /* APIService.swift in Sources */,
 				E1D39F092088A77200D968C8 /* ApiManagerService.swift in Sources */,
 				E16F7B6B20879FE800CE9F3D /* ViewModel.swift in Sources */,
@@ -516,7 +520,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 9P6269MA4E;
 				INFOPLIST_FILE = UoocTeacher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -525,6 +530,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.uooc.UoocTeacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1707a773-00b4-40f0-ae43-ad07ebb8312d";
+				PROVISIONING_PROFILE_SPECIFIER = Teacher_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "UoocTeacher/Classes/Util/Reference/UoocTeacher-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -538,7 +545,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 9P6269MA4E;
 				INFOPLIST_FILE = UoocTeacher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -547,6 +555,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.uooc.UoocTeacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1707a773-00b4-40f0-ae43-ad07ebb8312d";
+				PROVISIONING_PROFILE_SPECIFIER = Teacher_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "UoocTeacher/Classes/Util/Reference/UoocTeacher-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
