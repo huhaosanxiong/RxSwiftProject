@@ -25,13 +25,13 @@ let KmairmH = UIApplication.shared.statusBarFrame.height
 ///导航栏高度
 let SafeAreaTopHeight = KmairmH + 44.0
 ///tabBar高度
-let SafeAreaBottomHeight:CGFloat = (SCREENH == 812.0 ? 83.0 : 49.0)
+let SafeAreaBottomHeight:CGFloat = (MAXHEIGHT == 812.0 ? 83.0 : 49.0)
 
 
 
 /// 字体大小
 func Font(size:CGFloat) -> UIFont {
-    let s:CGFloat = size*SCREENW/375.0
+    let s:CGFloat = size*MAXHEIGHT/375.0
     return UIFont.systemFont(ofSize: s)
 }
 
