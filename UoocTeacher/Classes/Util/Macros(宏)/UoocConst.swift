@@ -17,9 +17,9 @@ enum uoocType:Int {
 }
 
 /// 屏幕的宽
-let SCREENW = UIScreen.main.bounds.size.width
+let MAXWIDTH = UIScreen.main.bounds.size.width
 /// 屏幕的高
-let SCREENH = UIScreen.main.bounds.size.height
+let MAXHEIGHT = UIScreen.main.bounds.size.height
 /// 状态栏的高度
 let KmairmH = UIApplication.shared.statusBarFrame.height
 ///导航栏高度
