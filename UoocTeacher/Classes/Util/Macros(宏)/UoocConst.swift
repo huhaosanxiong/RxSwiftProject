@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 /// 屏幕的宽
 let MAXWIDTH = UIScreen.main.bounds.size.width
 /// 屏幕的高
