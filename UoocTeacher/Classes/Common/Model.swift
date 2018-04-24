@@ -46,16 +46,6 @@ class AppCourseModel: HandyJSON {
     required init() {
         
     }
-    
 }
 
-class BaseModel: HandyJSON {
-    
-    var code: Int = 0
-    var data: Any?
-    var msg: String?
-    
-    required init() {
-    }
-}
 

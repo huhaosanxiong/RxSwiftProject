@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Moya
 import HandyJSON
+import MJRefresh
 
 
 class UOCSecondViewController: BaseViewController {
@@ -33,6 +34,8 @@ class UOCSecondViewController: BaseViewController {
         
         table.delegate = self as? UITableViewDelegate
         
+        table.tableFooterView = UIView.init()
+        
         return table
         
     }()
@@ -43,6 +46,7 @@ class UOCSecondViewController: BaseViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        view.addSubview(tableView)
         
 //        action1()
 //        action2()
@@ -52,11 +56,43 @@ class UOCSecondViewController: BaseViewController {
 //        action6()
 //        action7()
 //        action8()
-        action9()
+//        action9()
         
+        bindViewModel()
+        // 加载数据
+        tableView.mj_header.beginRefreshing()
         pushButton .addTarget(self, action: #selector(action1), for: .touchUpInside)
     }
+    func bindViewModel() {
         
+        
+        
+        tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            self.VM.requestCommond.onNext(true)
+        })
+        tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {
+            self.VM.requestCommond.onNext(false)
+        })
+        VM.loadData()
+        VM.refreshStatus.asObservable().subscribe(onNext: {[weak self] status in
+            switch status {
+            case .endHeaderRefresh:
+                self?.tableView.mj_header.endRefreshing()
+            case .endFooterRefresh:
+                self?.tableView.mj_footer.endRefreshing()
+            case .noMoreData:
+                self?.tableView.mj_footer.endRefreshingWithNoMoreData()
+            default:
+                break
+            }
+        }).disposed(by: bag)
+        
+        VM.dataSource.asObservable().bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { (row, element, cell) in
+            
+            cell.textLabel?.text = "row \(row) -> \(element.activity1_title!)"
+            }
+            .disposed(by: disposeBag)
+    }
         
        @objc func action1() {
         
@@ -284,8 +320,7 @@ class UOCSecondViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        VM.requestAction("app_course")
+
     }
     
 }
@@ -293,8 +328,8 @@ class UOCSecondViewController: BaseViewController {
 extension UOCSecondViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model = VM.dataSource.value[indexPath.row] as? ActivityModel
-        print("\(model?.activity1_title!)")
+        let model = VM.dataSource.value[indexPath.row]
+        print("\(model.activity1_title!)")
     }
 }
 

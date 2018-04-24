@@ -12,17 +12,66 @@ import Moya
 import HandyJSON
 import SVProgressHUD
 
-enum RefreshType {
-    case loadNew
-    case loadMore
+enum RefreshStatus {
+    case none
+//    case beginHeaderRefresh
+    case endHeaderRefresh
+//    case beginFooterRefresh
+    case endFooterRefresh
+    case noMoreData
 }
 
 class ViewModel {
     
     let dataSource : Variable<[ActivityModel]> = Variable([])
+    // 记录当前的索引值
+    var page: Int = 1
+    // 外界通过该属性告诉viewModel加载数据（传入的值是为了标志是否重新加载）
+    let requestCommond = PublishSubject<Bool>()
+    // 告诉外界的tableView当前的刷新状态
+    let refreshStatus = Variable<RefreshStatus>(.none)
     
     let disposebag = DisposeBag()
     
+}
+    
+extension ViewModel {
+    
+    func loadData()  {
+        
+        requestCommond.subscribe(onNext:{ [unowned self] isReloadData in
+            
+            if isReloadData { self.page = 1 }
+                //假设下面的请求需要用到page
+            APIProvider.rx.request(.appOperation(code: "app_course"))
+                .filterSuccessfulStatusCodes()
+                .asObservable()
+                .mapObject(type: AppCourseModel.self)
+                .subscribe(onNext: { model in
+                    self.page += 1
+                    
+                    self.dataSource.value = isReloadData ? model.app_course : self.dataSource.value + model.app_course
+                    
+                    if model.app_course.count == 0 { self.refreshStatus.value = .noMoreData }
+                    
+                    SVProgressHUD.showSuccess(withStatus: "Load Success")
+                }, onError: { error in
+                    //处理throw异常
+                    guard let rxError = error as? RxSwiftMoyaError else { return }
+                    switch rxError {
+                    case .UnexpectedResult(let resultCode, let resultMsg):
+                        print("code = \(resultCode!),msg = \(resultMsg!)")
+                        SVProgressHUD.showError(withStatus: "code = \(resultCode!),msg = \(resultMsg!)")
+                    default :
+                        print("网络故障")
+                        SVProgressHUD.showError(withStatus: "网络故障")
+                    }
+                    
+                }, onCompleted: {
+                    self.refreshStatus.value = isReloadData ? .endHeaderRefresh : .endFooterRefresh
+                }).disposed(by: self.disposebag)
+        }).disposed(by: disposebag)
+    }
     
     func requestAction(_ code :String) {
         
@@ -42,16 +91,6 @@ class ViewModel {
                 
             }.disposed(by: disposebag)
         
-    }
-    
-    
-    func login(_ username: String,_ password: String) -> Observable<BaseModel> {
-
-        return APIProvider.rx.request(.login(username: username, password: password))
-            .asObservable()
-            .filterSuccessfulStatusCodes()
-            .mapObject(type: BaseModel.self)
-
     }
     
     //手动转 ，与oc类似
