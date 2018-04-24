@@ -14,12 +14,14 @@ target 'UoocTeacher' do
     pod 'RxCocoa'
     pod 'RxBlocking'
     pod 'Moya/RxSwift', '~> 11.0'
-    pod "Hero", :git => 'https://github.com/lkzhao/Hero.git', :commit => "a5bec96"
+    pod 'Hero'
     pod 'Material'
     pod 'SnapKit'
     
     #Objective-C
     pod 'QMUIKit'
+    pod 'SVProgressHUD'
+    pod 'MJRefresh'
     
 end
 

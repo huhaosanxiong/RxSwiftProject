@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         createTabBarController()
         
+        ApiManager.instance.baseUrl = Environment.Product.rawValue
+
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: false)
         
         return true

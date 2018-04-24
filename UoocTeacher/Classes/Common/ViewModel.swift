@@ -10,8 +10,39 @@ import Foundation
 import RxSwift
 import Moya
 import HandyJSON
+import SVProgressHUD
+
+enum RefreshType {
+    case loadNew
+    case loadMore
+}
 
 class ViewModel {
+    
+    let dataSource : Variable<[ActivityModel]> = Variable([])
+    
+    let disposebag = DisposeBag()
+    
+    
+    func requestAction(_ code :String) {
+        
+        SVProgressHUD.show()
+        APIProvider.rx.request(.appOperation(code: code))
+            .filterSuccessfulStatusCodes()
+            .asObservable()
+            .mapObject(type: AppCourseModel.self)
+            .asSingle()
+            .subscribe(onSuccess: { model in
+                SVProgressHUD.dismiss()
+                
+                self.dataSource.value = model.app_course
+                
+            }) { error in
+                SVProgressHUD.dismiss()
+                
+            }.disposed(by: disposebag)
+        
+    }
     
     
     func login(_ username: String,_ password: String) -> Observable<BaseModel> {
@@ -83,5 +114,7 @@ class ViewModel {
             .mapObject(type: AppCourseModel.self)
             .asSingle()
     }
+    
+    
 }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Motion
 
 class UOCTabbarViewController: UITabBarController {
 
@@ -39,9 +40,7 @@ class UOCTabbarViewController: UITabBarController {
         
             let tabbarItem = returnBarItem(title: dict["title"], image: dict["image"], selectImage: dict["selectImage"])
             let nav = UOCNavigationViewController.init(rootViewController: vc)
-            nav.isHeroEnabled = true
             nav.tabBarItem = tabbarItem
-            
             navArr.append(nav)
         }
         

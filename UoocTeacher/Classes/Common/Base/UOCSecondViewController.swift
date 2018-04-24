@@ -8,19 +8,35 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import Moya
 import HandyJSON
 
 
 class UOCSecondViewController: BaseViewController {
     
-    let bag : DisposeBag = DisposeBag()
+    var bag : DisposeBag = DisposeBag()
     
     let provider = MoyaProvider<APIService>()
     
     let VM = ViewModel()
     
+    var req : [Cancellable] = [Cancellable]()
+    
     var textField : UITextField = UITextField()
+    
+    lazy var tableView : UITableView = {
+        
+        let table = UITableView.init(frame: view.bounds)
+        
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        table.delegate = self as? UITableViewDelegate
+        
+        return table
+        
+    }()
+    
     
     
     override func viewDidLoad() {
@@ -28,17 +44,25 @@ class UOCSecondViewController: BaseViewController {
         
         // Do any additional setup after loading the view.
         
-        //        action1()
-        //        action2()
-        //        action3()
-        //        action4()
-        //        action5()
-        //        action6()
-        //        action7()
+//        action1()
+//        action2()
+//        action3()
+//        action4()
+//        action5()
+//        action6()
+//        action7()
+//        action8()
+        action9()
+        
+        pushButton .addTarget(self, action: #selector(action1), for: .touchUpInside)
+    }
         
         
-        func action1() {
-            provider.request(.appOperation(code: "app_course")) { (result) in
+       @objc func action1() {
+        
+        req.forEach { $0.cancel()}
+        
+          let request = provider.request(.appOperation(code: "app_course")) { (result) in
                 switch result {
                 case let .success(moyaResponse):
                     let data = moyaResponse.data
@@ -59,6 +83,8 @@ class UOCSecondViewController: BaseViewController {
                     print(error)
                 }
             }
+        
+        req.append(request)
         }
         
         func action2() {
@@ -131,7 +157,8 @@ class UOCSecondViewController: BaseViewController {
                 }).disposed(by: bag)
         }
         
-        func action5() {
+        @objc func action5() {
+            
             
             VM.getAppOperationByMapObjectAsSingle("app_course").subscribe(onSuccess: { (model) in
                 print("model = \(model)")
@@ -175,9 +202,11 @@ class UOCSecondViewController: BaseViewController {
         }
         
         func action7() {
+            
+            
             pushButton.rx.tap
                 .flatMap{ self.VM.getAppOperationByMapObject("app_course") }
-                .subscribe(onNext: { (model) in
+                .subscribe(onNext: { [weak self] model in
                     print("model = \(model)")
                     for model in model.app_course {
                         print(model.activity1_title ?? "none")
@@ -193,38 +222,79 @@ class UOCSecondViewController: BaseViewController {
                     }
                     print(error)
                 }, onCompleted: {
-                    
+
                 }).disposed(by: bag)
             
             
-            pushButton.rx.tap
-                .flatMap{self.VM.getAppOperationByMapObjectAsSingle("app_course")}
-                .asSingle()
-                .subscribe(onSuccess: { (model) in
-                print("model = \(model)")
-                for model in model.app_course {
-                    print(model.activity1_title ?? "none")
-                }
-            }) { (error) in
-                //处理throw异常
-                guard let rxError = error as? RxSwiftMoyaError else { return }
-                switch rxError {
-                case .UnexpectedResult(let resultCode, let resultMsg):
-                    print("code = \(resultCode!),msg = \(resultMsg!)")
-                default :
-                    print("网络故障")
-                }
-                print(error)
-                }.disposed(by: bag)
+//            pushButton.rx.tap
+//                .flatMap{self.VM.getAppOperationByMapObjectAsSingle("app_course")}
+//                .asSingle()
+//                .subscribe(onSuccess: { (model) in
+//                print("model = \(model)")
+//                for model in model.app_course {
+//                    print(model.activity1_title ?? "none")
+//                }
+//            }) { (error) in
+//                //处理throw异常
+//                guard let rxError = error as? RxSwiftMoyaError else { return }
+//                switch rxError {
+//                case .UnexpectedResult(let resultCode, let resultMsg):
+//                    print("code = \(resultCode!),msg = \(resultMsg!)")
+//                default :
+//                    print("网络故障")
+//                }
+//                print(error)
+//                }.disposed(by: bag)
             
+            
+            pushButton.rx.tap.flatMap{self.VM.getAppOperationByMapObjectAsSingle("app_course")}
+                .asSingle()
+                .subscribe(onSuccess: { [weak self] model in
+
+                }) { (error) in
+
+                }.disposed(by: bag)
+ 
         }
         
         
         func action8() {
             
-            let imageView = UIImageView()
+            VM.dataSource.asObservable().subscribe(onNext: { arr in
+                print("arr = \(arr)")
+            }).disposed(by: bag)
+            
+            VM.requestAction("app_course")
             
         }
+    
+    func action9() {
+        
+        view.addSubview(tableView)
+        
+        VM.requestAction("app_course")
+        
+        VM.dataSource.asObservable().bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { (row, element, cell) in
+            
+            cell.textLabel?.text = "row \(row) -> \(element.activity1_title!)"
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        VM.requestAction("app_course")
+    }
+    
+}
+
+extension UOCSecondViewController : UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = VM.dataSource.value[indexPath.row] as? ActivityModel
+        print("\(model?.activity1_title!)")
     }
 }
 

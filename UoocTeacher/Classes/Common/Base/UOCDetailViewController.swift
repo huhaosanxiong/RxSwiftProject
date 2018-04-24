@@ -29,15 +29,10 @@ class UOCDetailViewController: BaseViewController {
         button.setTitle("ok", for: .normal)
         view.addSubview(button)
         
-        button.heroID = "push"
-        button.heroModifiers = [.arc]
-
-        
-        
 
         button.rx.tap.subscribe(onNext: { () in
             print("666")
-            self.hero_dismissViewController()
+            self.hero.dismissViewController()
             
         }).disposed(by: bag)
 

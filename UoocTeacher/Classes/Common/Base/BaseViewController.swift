@@ -16,6 +16,7 @@ import Material
 import Hero
 import Kingfisher
 import Moya
+import Motion
 
 class BaseViewController: QMUICommonViewController {
     
@@ -33,18 +34,20 @@ class BaseViewController: QMUICommonViewController {
         self.titleView.subtitle = self.titleView.style == QMUINavigationTitleViewStyle.subTitleVertical ? "(副标题)" : self.titleView.subtitle;
         
         
+        
         if (navigationController != nil) && (navigationController?.viewControllers.count)! > 1 {
             self.navigationItem.hidesBackButton = true;
             self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: Icon.arrowBack, style: UIBarButtonItemStyle.plain, target: self, action: #selector(goback(button:)))
             self.navigationItem.leftItemsSupplementBackButton = true;
+            
+            self.navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
         }
-        
         
     }
 
     override func setNavigationItemsIsInEditMode(_ isInEditMode: Bool, animated: Bool) {
         super.setNavigationItemsIsInEditMode(isInEditMode, animated: animated)
-        title = "Nav"
+        self.titleView.title = "Nav"
     }
     
     override func initSubviews() {
@@ -54,16 +57,14 @@ class BaseViewController: QMUICommonViewController {
         pushButton.setTitle("Push", for: .normal)
         pushButton.setTitleColor(UIColor.white, for: .normal)
         pushButton.backgroundColor = Color.blue.base
-        pushButton.heroID = "push"
-        view.addSubview(pushButton)
+//        view.addSubview(pushButton)
 
         
         pushButton.rx.tap.subscribe(onNext: { () in
             print("666")
             
-            let vc = UOCDetailViewController()
-            vc.isHeroEnabled = true
-            self.navigationController?.pushViewController(vc, animated: true)
+//            let vc = UOCDetailViewController()
+//            self.navigationController?.pushViewController(vc, animated: true)
             
         }).disposed(by: disposeBag)
         
