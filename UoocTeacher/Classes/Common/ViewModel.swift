@@ -38,7 +38,7 @@ class ViewModel {
 extension ViewModel {
     
     func loadData()  {
-        
+
         requestCommond.subscribe(onNext:{ [unowned self] isReloadData in
             
             if isReloadData { self.page = 1 }
@@ -71,7 +71,47 @@ extension ViewModel {
                     self.refreshStatus.value = isReloadData ? .endHeaderRefresh : .endFooterRefresh
                 }).disposed(by: self.disposebag)
         }).disposed(by: disposebag)
+        
+        
+
+        
+//        var isReloadData :Bool = true
+//
+//        requestCommond.flatMapLatest{ isReload -> Observable<AppCourseModel> in
+//            if isReload { self.page = 1 }
+//            isReloadData = isReload
+//            //假设下面的请求需要用到page
+//            return APIProvider.rx.request(.appOperation(code: "app_course"))
+//                .filterSuccessfulStatusCodes()
+//                .asObservable()
+//                .mapObject(type: AppCourseModel.self)
+//
+//            }.subscribe(onNext: {[unowned self] model in
+//                self.page += 1
+//
+//                self.dataSource.value = isReloadData ? model.app_course : self.dataSource.value + model.app_course
+//
+//                if model.app_course.count == 0 { self.refreshStatus.value = .noMoreData }
+//
+//                SVProgressHUD.showSuccess(withStatus: "Load Success")
+//
+//            }, onError: { error in
+//                //处理throw异常
+//                guard let rxError = error as? RxSwiftMoyaError else { return }
+//                switch rxError {
+//                case .UnexpectedResult(let resultCode, let resultMsg):
+//                    print("code = \(resultCode!),msg = \(resultMsg!)")
+//                    SVProgressHUD.showError(withStatus: "code = \(resultCode!),msg = \(resultMsg!)")
+//                default :
+//                    print("网络故障")
+//                    SVProgressHUD.showError(withStatus: "网络故障")
+//                }
+//
+//            }, onCompleted: {
+//                self.refreshStatus.value = isReloadData ? .endHeaderRefresh : .endFooterRefresh
+//            }).disposed(by: self.disposebag)
     }
+    
     
     func requestAction(_ code :String) {
         

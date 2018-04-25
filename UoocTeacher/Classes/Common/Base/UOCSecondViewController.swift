@@ -16,7 +16,7 @@ import MJRefresh
 
 class UOCSecondViewController: BaseViewController {
     
-    var bag : DisposeBag = DisposeBag()
+    var disposeBag : DisposeBag = DisposeBag()
     
     let provider = MoyaProvider<APIService>()
     
@@ -32,7 +32,7 @@ class UOCSecondViewController: BaseViewController {
         
         table.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
-        table.delegate = self as? UITableViewDelegate
+        table.delegate = self
         
         table.tableFooterView = UIView.init()
         
@@ -40,10 +40,16 @@ class UOCSecondViewController: BaseViewController {
         
     }()
     
-    
+    override func setNavigationItemsIsInEditMode(_ isInEditMode: Bool, animated: Bool) {
+        super.setNavigationItemsIsInEditMode(isInEditMode, animated: animated)
+        self.titleView.title = "Nav"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.titleView.style = self.titleView.style == QMUINavigationTitleViewStyle.default ? QMUINavigationTitleViewStyle.subTitleVertical : QMUINavigationTitleViewStyle.default;
+        self.titleView.subtitle = self.titleView.style == QMUINavigationTitleViewStyle.subTitleVertical ? "(副标题)" : self.titleView.subtitle;
         
         // Do any additional setup after loading the view.
         view.addSubview(tableView)
@@ -58,22 +64,21 @@ class UOCSecondViewController: BaseViewController {
 //        action8()
 //        action9()
         
-        bindViewModel()
         // 加载数据
         tableView.mj_header.beginRefreshing()
-        pushButton .addTarget(self, action: #selector(action1), for: .touchUpInside)
+ 
     }
-    func bindViewModel() {
+    override func bindViewModel() {
         
-        
+        VM.loadData()
         
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
             self.VM.requestCommond.onNext(true)
         })
-        tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {
+        tableView.mj_footer = MJRefreshBackNormalFooter(refreshingBlock: {
             self.VM.requestCommond.onNext(false)
         })
-        VM.loadData()
+        
         VM.refreshStatus.asObservable().subscribe(onNext: {[weak self] status in
             switch status {
             case .endHeaderRefresh:
@@ -85,7 +90,7 @@ class UOCSecondViewController: BaseViewController {
             default:
                 break
             }
-        }).disposed(by: bag)
+        }).disposed(by: disposeBag)
         
         VM.dataSource.asObservable().bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { (row, element, cell) in
             
@@ -147,7 +152,7 @@ class UOCSecondViewController: BaseViewController {
                     
                 }, onError: { (error) in
                     print(error.localizedDescription)
-                }).disposed(by: bag)
+                }).disposed(by: disposeBag)
             
         }
         
@@ -162,7 +167,7 @@ class UOCSecondViewController: BaseViewController {
                 print("error = \(error)")
             }, onCompleted: {
                 print("complete")
-            }).disposed(by: bag)
+            }).disposed(by: disposeBag)
         }
         
         func action4() {
@@ -190,7 +195,7 @@ class UOCSecondViewController: BaseViewController {
                     print(error)
                 }, onCompleted: {
                     
-                }).disposed(by: bag)
+                }).disposed(by: disposeBag)
         }
         
         @objc func action5() {
@@ -211,7 +216,7 @@ class UOCSecondViewController: BaseViewController {
                     print("网络故障")
                 }
                 print(error)
-                }.disposed(by: bag)
+                }.disposed(by: disposeBag)
         }
         
         
@@ -229,9 +234,9 @@ class UOCSecondViewController: BaseViewController {
             }
             let passwordHidden = textField.rx.isHidden
             
-            passwordVaild.subscribeOn(MainScheduler.instance).observeOn(MainScheduler.instance).bind(to: passwordHidden).disposed(by: bag)
+            passwordVaild.subscribeOn(MainScheduler.instance).observeOn(MainScheduler.instance).bind(to: passwordHidden).disposed(by: disposeBag)
             
-            Observable.of(1,2,3).reduce(10, accumulator: +).subscribe(onNext: {print($0)}).disposed(by: bag)
+            Observable.of(1,2,3).reduce(10, accumulator: +).subscribe(onNext: {print($0)}).disposed(by: disposeBag)
             
             
             
@@ -239,8 +244,9 @@ class UOCSecondViewController: BaseViewController {
         
         func action7() {
             
+            let button = UIButton()
             
-            pushButton.rx.tap
+            button.rx.tap
                 .flatMap{ self.VM.getAppOperationByMapObject("app_course") }
                 .subscribe(onNext: { [weak self] model in
                     print("model = \(model)")
@@ -259,37 +265,8 @@ class UOCSecondViewController: BaseViewController {
                     print(error)
                 }, onCompleted: {
 
-                }).disposed(by: bag)
-            
-            
-//            pushButton.rx.tap
-//                .flatMap{self.VM.getAppOperationByMapObjectAsSingle("app_course")}
-//                .asSingle()
-//                .subscribe(onSuccess: { (model) in
-//                print("model = \(model)")
-//                for model in model.app_course {
-//                    print(model.activity1_title ?? "none")
-//                }
-//            }) { (error) in
-//                //处理throw异常
-//                guard let rxError = error as? RxSwiftMoyaError else { return }
-//                switch rxError {
-//                case .UnexpectedResult(let resultCode, let resultMsg):
-//                    print("code = \(resultCode!),msg = \(resultMsg!)")
-//                default :
-//                    print("网络故障")
-//                }
-//                print(error)
-//                }.disposed(by: bag)
-            
-            
-            pushButton.rx.tap.flatMap{self.VM.getAppOperationByMapObjectAsSingle("app_course")}
-                .asSingle()
-                .subscribe(onSuccess: { [weak self] model in
+                }).disposed(by: disposeBag)
 
-                }) { (error) in
-
-                }.disposed(by: bag)
  
         }
         
@@ -298,7 +275,7 @@ class UOCSecondViewController: BaseViewController {
             
             VM.dataSource.asObservable().subscribe(onNext: { arr in
                 print("arr = \(arr)")
-            }).disposed(by: bag)
+            }).disposed(by: disposeBag)
             
             VM.requestAction("app_course")
             

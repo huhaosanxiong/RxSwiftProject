@@ -20,20 +20,11 @@ import Motion
 
 class BaseViewController: QMUICommonViewController {
     
-    lazy var disposeBag : DisposeBag = DisposeBag()
-    
-    var pushButton : UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         view.backgroundColor = UIColor.qmui_random()
-        
-        self.titleView.style = self.titleView.style == QMUINavigationTitleViewStyle.default ? QMUINavigationTitleViewStyle.subTitleVertical : QMUINavigationTitleViewStyle.default;
-        self.titleView.subtitle = self.titleView.style == QMUINavigationTitleViewStyle.subTitleVertical ? "(副标题)" : self.titleView.subtitle;
-        
-        
         
         if (navigationController != nil) && (navigationController?.viewControllers.count)! > 1 {
             self.navigationItem.hidesBackButton = true;
@@ -43,37 +34,16 @@ class BaseViewController: QMUICommonViewController {
             self.navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
         }
         
+        bindViewModel()
     }
 
-    override func setNavigationItemsIsInEditMode(_ isInEditMode: Bool, animated: Bool) {
-        super.setNavigationItemsIsInEditMode(isInEditMode, animated: animated)
-        self.titleView.title = "Nav"
-    }
     
     override func initSubviews() {
         
         
-        pushButton = UIButton.init(type: .system)
-        pushButton.setTitle("Push", for: .normal)
-        pushButton.setTitleColor(UIColor.white, for: .normal)
-        pushButton.backgroundColor = Color.blue.base
-//        view.addSubview(pushButton)
-
-        
-        pushButton.rx.tap.subscribe(onNext: { () in
-            print("666")
-            
-//            let vc = UOCDetailViewController()
-//            self.navigationController?.pushViewController(vc, animated: true)
-            
-        }).disposed(by: disposeBag)
-        
-        
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        pushButton.frame = CGRect.init(x: 100, y: Int(arc4random()%300+64), width: 200, height: 40)
+    func bindViewModel() {
         
     }
 
