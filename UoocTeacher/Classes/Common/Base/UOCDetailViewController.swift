@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import RxSwift
-import Hero
 
 class UOCDetailViewController: BaseViewController {
 

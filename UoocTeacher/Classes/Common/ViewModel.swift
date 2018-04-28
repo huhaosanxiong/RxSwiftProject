@@ -7,10 +7,6 @@
 //
 
 import Foundation
-import RxSwift
-import Moya
-import HandyJSON
-import SVProgressHUD
 
 enum RefreshStatus {
     case none
@@ -40,7 +36,7 @@ extension ViewModel {
     func loadData()  {
 
         requestCommond.subscribe(onNext:{ [unowned self] isReloadData in
-            
+
             if isReloadData { self.page = 1 }
                 //假设下面的请求需要用到page
             APIProvider.rx.request(.appOperation(code: "app_course"))
@@ -49,11 +45,11 @@ extension ViewModel {
                 .mapObject(type: AppCourseModel.self)
                 .subscribe(onNext: { model in
                     self.page += 1
-                    
+
                     self.dataSource.value = isReloadData ? model.app_course : self.dataSource.value + model.app_course
-                    
+
                     if model.app_course.count == 0 { self.refreshStatus.value = .noMoreData }
-                    
+
                     SVProgressHUD.showSuccess(withStatus: "Load Success")
                 }, onError: { error in
                     //处理throw异常
@@ -66,7 +62,7 @@ extension ViewModel {
                         print("网络故障")
                         SVProgressHUD.showError(withStatus: "网络故障")
                     }
-                    
+
                 }, onCompleted: {
                     self.refreshStatus.value = isReloadData ? .endHeaderRefresh : .endFooterRefresh
                 }).disposed(by: self.disposebag)
@@ -110,6 +106,7 @@ extension ViewModel {
 //            }, onCompleted: {
 //                self.refreshStatus.value = isReloadData ? .endHeaderRefresh : .endFooterRefresh
 //            }).disposed(by: self.disposebag)
+        
     }
     
     

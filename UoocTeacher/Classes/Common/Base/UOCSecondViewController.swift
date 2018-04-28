@@ -7,11 +7,7 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
-import Moya
-import HandyJSON
-import MJRefresh
+
 
 
 class UOCSecondViewController: BaseViewController {
@@ -35,6 +31,7 @@ class UOCSecondViewController: BaseViewController {
         table.delegate = self
         
         table.tableFooterView = UIView.init()
+
         
         return table
         
@@ -53,6 +50,10 @@ class UOCSecondViewController: BaseViewController {
         
         // Do any additional setup after loading the view.
         view.addSubview(tableView)
+        
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view).inset(UIEdgeInsets.zero)
+        }
         
 //        action1()
 //        action2()
@@ -91,6 +92,7 @@ class UOCSecondViewController: BaseViewController {
                 break
             }
         }).disposed(by: disposeBag)
+        
         
         VM.dataSource.asObservable().bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { (row, element, cell) in
             
@@ -229,9 +231,7 @@ class UOCSecondViewController: BaseViewController {
             
             let text = textField.rx.text.orEmpty.asObservable()
             
-            let passwordVaild = text.map{
-                $0.count>9
-            }
+            let passwordVaild = text.map{ $0.count>9 }
             let passwordHidden = textField.rx.isHidden
             
             passwordVaild.subscribeOn(MainScheduler.instance).observeOn(MainScheduler.instance).bind(to: passwordHidden).disposed(by: disposeBag)
@@ -307,6 +307,16 @@ extension UOCSecondViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = VM.dataSource.value[indexPath.row]
         print("\(model.activity1_title!)")
+    }
+    
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction.init(style: .default, title: "delete") { (_, indexP) in
+            let model = self.VM.dataSource.value[indexP.row]
+            print("\(model.activity1_title!)")
+            self.VM.dataSource.value.remove(at: indexP.row)
+        }
+        return [delete]
     }
 }
 

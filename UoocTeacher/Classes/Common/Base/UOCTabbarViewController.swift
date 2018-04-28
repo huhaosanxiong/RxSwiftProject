@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Motion
 
 class UOCTabbarViewController: UITabBarController {
 
@@ -21,12 +20,12 @@ class UOCTabbarViewController: UITabBarController {
     func configViewControllers() -> Void {
         
         let arr = [
-            BaseViewController.init(),
+            UOCFirstViewController.init(),
             UOCSecondViewController.init(),
             BaseViewController.init()
         ]
         
-        var navArr = [UINavigationController]()
+        var navArr = [UOCNavigationViewController]()
         
         var itemArr = [
             ["title":"Home","image":"icon_weizhuanye","selectImage":"icon_weizhuanye_selected"],
@@ -40,6 +39,7 @@ class UOCTabbarViewController: UITabBarController {
         
             let tabbarItem = returnBarItem(title: dict["title"], image: dict["image"], selectImage: dict["selectImage"])
             let nav = UOCNavigationViewController.init(rootViewController: vc)
+            vc.hidesBottomBarWhenPushed = false
             nav.tabBarItem = tabbarItem
             navArr.append(nav)
         }

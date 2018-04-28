@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import Moya
-import Result
 
 
 let APIProvider = MoyaProvider<APIService>.init(requestClosure: requestClosure,
