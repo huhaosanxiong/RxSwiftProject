@@ -13,6 +13,7 @@ target 'UoocTeacher' do
     pod 'RxSwift'
     pod 'RxCocoa'
     pod 'RxBlocking'
+    pod 'RxDataSources'
     pod 'Moya/RxSwift', '~> 11.0'
     pod 'Hero'
     pod 'Material'

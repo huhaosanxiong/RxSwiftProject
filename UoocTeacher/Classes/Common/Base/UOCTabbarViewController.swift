@@ -22,7 +22,7 @@ class UOCTabbarViewController: UITabBarController {
         let arr = [
             UOCFirstViewController.init(),
             UOCSecondViewController.init(),
-            BaseViewController.init()
+            UOCThirdViewController.init()
         ]
         
         var navArr = [UOCNavigationViewController]()

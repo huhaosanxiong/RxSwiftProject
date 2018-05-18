@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.6.0)
+  - Differentiator (3.0.2)
   - HandyJSON (4.1.1)
   - Hero (1.2.0)
   - Kingfisher (4.6.1)
@@ -212,6 +213,10 @@ PODS:
     - RxSwift (~> 4.0)
   - RxCocoa (4.1.1):
     - RxSwift (~> 4.0)
+  - RxDataSources (3.0.2):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
   - RxSwift (4.1.1)
   - SnapKit (4.0.0)
   - SVProgressHUD (2.2.5)
@@ -227,6 +232,7 @@ DEPENDENCIES:
   - QMUIKit
   - RxBlocking
   - RxCocoa
+  - RxDataSources
   - RxSwift
   - SnapKit
   - SVProgressHUD
@@ -234,6 +240,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+    - Differentiator
     - HandyJSON
     - Hero
     - Kingfisher
@@ -245,12 +252,14 @@ SPEC REPOS:
     - Result
     - RxBlocking
     - RxCocoa
+    - RxDataSources
     - RxSwift
     - SnapKit
     - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   HandyJSON: 3a3de917c4118767ffe41c29b5acba23409649f4
   Hero: 33dadf2cd1c98af71e213dcbc2902e6e03622a4e
   Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
@@ -262,10 +271,11 @@ SPEC CHECKSUMS:
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxBlocking: 22e7d7b86a1c0c42164a30d64f56f97128b4ffab
   RxCocoa: fd0862fd2df95fa55562ad28ffd2522c25eb4a85
+  RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
   RxSwift: c6e3b1c7b325c7d121cd4327e9d98b7ed746b570
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: e59813dbc1c307713404c62050bc94ae2158ed1d
+PODFILE CHECKSUM: f15fbcc3cbafbb5a9e7693f4a8d81660fd570dbe
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.0.beta.1

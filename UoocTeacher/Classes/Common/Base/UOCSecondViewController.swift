@@ -25,13 +25,8 @@ class UOCSecondViewController: BaseViewController {
     lazy var tableView : UITableView = {
         
         let table = UITableView.init(frame: view.bounds)
-        
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        
-        table.delegate = self
-        
-        table.tableFooterView = UIView.init()
-
+    
+        table.registerCell(ofType: MyTableCell.self)
         
         return table
         
@@ -64,20 +59,21 @@ class UOCSecondViewController: BaseViewController {
 //        action7()
 //        action8()
 //        action9()
+//        action10()
         
         // 加载数据
         tableView.mj_header.beginRefreshing()
  
     }
+    
     override func bindViewModel() {
         
-        VM.loadData()
         
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
-            self.VM.requestCommond.onNext(true)
+            self.VM.requestAction(isReloadData: true)
         })
         tableView.mj_footer = MJRefreshBackNormalFooter(refreshingBlock: {
-            self.VM.requestCommond.onNext(false)
+            self.VM.requestAction(isReloadData: false)
         })
         
         VM.refreshStatus.asObservable().subscribe(onNext: {[weak self] status in
@@ -93,12 +89,62 @@ class UOCSecondViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
         
-        
-        VM.dataSource.asObservable().bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { (row, element, cell) in
-            
-            cell.textLabel?.text = "row \(row) -> \(element.activity1_title!)"
+        /*
+        VM.dataSource.asObservable().bind(to: tableView.rx.items) { (tableView, row, element) in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
+            cell.textLabel?.text = "\(element.activity1_title!) @ row \(row)"
+            return cell
             }
             .disposed(by: disposeBag)
+        */
+        
+        // Configure
+        let dataSource = RxTableViewSectionedReloadDataSource<SectionOfCustomData>(configureCell: { [unowned self] (dataSource, tableView, indexPath, model) -> UITableViewCell in
+
+            let cell = tableView.cell(ofType: MyTableCell.self)
+            cell.textLabel?.text = "row \(indexPath.row) -> \(model.activity1_title!)"
+            cell.button.rx.tap.subscribe(onNext: {
+                DLog("row -> \(indexPath.row)")
+            }).disposed(by: cell.disposeBag)
+            
+            return cell
+        })
+        
+        
+        VM.rxDataSource.asObservable()
+            .bind(to: tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+
+        //获取选中项的内容
+        tableView.rx.modelSelected(ActivityModel.self).subscribe(onNext: { model in
+            print("点击\(model.activity1_title!)")
+        }).disposed(by: disposeBag)
+        
+        //获取选中项的索引
+        tableView.rx.itemSelected.subscribe(onNext: {indexPath in
+            print("选中项的indexPath为：\(indexPath)")
+//            let cell = self?.tableView.cellForRow(at: indexPath)
+//            cell?.shake()
+        }).disposed(by: disposeBag)
+        
+        Observable.zip(tableView.rx.modelSelected(ActivityModel.self),tableView.rx.itemSelected)
+            .subscribe(onNext: {model, indexPath in
+            print("合并 indexPath.row = \(indexPath.row),model.title = \(model.activity1_title!)")
+        }).disposed(by: disposeBag)
+        
+        Observable.zip(tableView.rx.itemDeleted,tableView.rx.modelDeleted(ActivityModel.self))
+            .subscribe(onNext:{ [weak self] indexPath ,model in
+                print("删除 indexPath.row = \(indexPath.row),model.title = \(model.activity1_title!)")
+                self?.VM.dataSource.value.remove(at: indexPath.row)
+            }).disposed(by: disposeBag)
+        
+        tableView.rx.itemDeleted.subscribe(onNext:{ indexPath in
+            print("delete \(indexPath.row)")
+        }).disposed(by: disposeBag)
+        
+        
+        //必须实现UITableViewDelegate 不然报错
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
     }
         
        @objc func action1() {
@@ -132,29 +178,6 @@ class UOCSecondViewController: BaseViewController {
         
         func action2() {
             
-            APIProvider.rx.request(.appOperation(code: "app_course"))
-                .filterSuccessfulStatusCodes()
-                .mapJSON()
-                .subscribe(onSuccess: { (resp) in
-                    print(resp)
-                    
-                    guard let object = resp as? [String: Any] else { return }
-                    guard let array = object["results"] as? [[String: Any]] else { return }
-                    
-                    print("array = \(array)")
-                    var dataSource  = [FuliModel]()
-                    
-                    for dict in array {
-                        
-                        guard let model: FuliModel = JSONDeserializer.deserializeFrom(dict: dict) else { return }
-                        
-                        dataSource.append(model)
-                    }
-                    
-                    
-                }, onError: { (error) in
-                    print(error.localizedDescription)
-                }).disposed(by: disposeBag)
             
         }
         
@@ -267,7 +290,6 @@ class UOCSecondViewController: BaseViewController {
 
                 }).disposed(by: disposeBag)
 
- 
         }
         
         
@@ -277,22 +299,38 @@ class UOCSecondViewController: BaseViewController {
                 print("arr = \(arr)")
             }).disposed(by: disposeBag)
             
-            VM.requestAction("app_course")
             
         }
     
     func action9() {
         
         view.addSubview(tableView)
-        
-        VM.requestAction("app_course")
-        
+    
         VM.dataSource.asObservable().bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { (row, element, cell) in
             
             cell.textLabel?.text = "row \(row) -> \(element.activity1_title!)"
             }
             .disposed(by: disposeBag)
         
+    }
+    
+    func action10() {
+        
+        let button = UIButton.init(frame: CGRect.init(x: 0, y: 64, width: 100, height: 30))
+        button.backgroundColor = UIColor.blue
+        button.alpha = 0.4
+        view.addSubview(button)
+        
+        let ob = button.rx.tap
+            .flatMapLatest{self.VM.getAppOperationByMapObjectAsDriver("app_course")}
+        
+        
+        ob.bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { (row, element, cell) in
+            
+            cell.textLabel?.text = "row \(row) -> \(element.activity1_title!)"
+            }
+            .disposed(by: disposeBag)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -302,26 +340,11 @@ class UOCSecondViewController: BaseViewController {
     
 }
 
-extension UOCSecondViewController : UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model = VM.dataSource.value[indexPath.row]
-        print("\(model.activity1_title!)")
-    }
+
+
+extension UOCSecondViewController :UITableViewDelegate {
     
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction.init(style: .default, title: "delete") { (_, indexP) in
-            let model = self.VM.dataSource.value[indexP.row]
-            print("\(model.activity1_title!)")
-            self.VM.dataSource.value.remove(at: indexP.row)
-        }
-        return [delete]
-    }
 }
-
-
-
-
 
 

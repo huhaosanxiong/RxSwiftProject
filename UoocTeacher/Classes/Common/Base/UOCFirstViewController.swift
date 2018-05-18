@@ -37,7 +37,7 @@ class UOCFirstViewController: BaseViewController {
     }
     
     override func preferredNavigationBarHidden() -> Bool {
-        return arc4random()%2 == 1 ? true :false
+        return false
     }
     @objc func pushAction() {
         navigationController?.pushViewController(UOCFirstViewController(), animated: true)

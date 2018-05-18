@@ -25,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: false)
         
+        SVProgressHUD.setMaximumDismissTimeInterval(1)
+        SVProgressHUD.setMinimumDismissTimeInterval(1)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+        
         return true
     }
 

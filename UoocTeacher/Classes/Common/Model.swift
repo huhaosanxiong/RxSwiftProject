@@ -9,22 +9,6 @@
 import Foundation
 import HandyJSON
 
-class FuliModel: HandyJSON {
-    var _id: Int = 0
-    var createdAt: String!
-    var desc: String!
-    var publishedAt: String!
-    var source: String!
-    var type: String!
-    var url: String!
-    var used: Bool = false
-    var who: String!
-    
-    required init() {
-        
-    }
-}
-
 class ActivityModel: HandyJSON {
     
     var activity1_id: String?
@@ -36,6 +20,21 @@ class ActivityModel: HandyJSON {
     
     required init() {
         
+    }
+    
+}
+
+struct SectionOfCustomData {
+    var header : String
+    var items : [Item]
+}
+
+extension SectionOfCustomData : SectionModelType {
+    typealias Item = ActivityModel
+    
+    init(original: SectionOfCustomData, items: [Item]) {
+        self = original
+        self.items = items
     }
 }
 

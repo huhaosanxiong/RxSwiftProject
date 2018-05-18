@@ -11,6 +11,8 @@
 		5292DD1B160C409450CEF375 /* Pods_UoocTeacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84B21BA7A833C3BB7A773B5 /* Pods_UoocTeacher.framework */; };
 		E11F8E082091D871008A17A4 /* UOCFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11F8E072091D871008A17A4 /* UOCFirstViewController.swift */; };
 		E11F8E0B20940AB1008A17A4 /* ThirdReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11F8E0A20940AB1008A17A4 /* ThirdReference.swift */; };
+		E11F8E10209AC271008A17A4 /* UIView+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11F8E0F209AC271008A17A4 /* UIView+Shake.swift */; };
+		E11F8E1220A03D5B008A17A4 /* UOCThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11F8E1120A03D5B008A17A4 /* UOCThirdViewController.swift */; };
 		E1310A73208492A400144702 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1310A72208492A400144702 /* AppDelegate.swift */; };
 		E1310A7A208492A600144702 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1310A79208492A600144702 /* Assets.xcassets */; };
 		E1310A7D208492A600144702 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1310A7B208492A600144702 /* LaunchScreen.storyboard */; };
@@ -24,6 +26,9 @@
 		E16F7B4520874C0A00CE9F3D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16F7B4420874C0A00CE9F3D /* Model.swift */; };
 		E16F7B6B20879FE800CE9F3D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16F7B6A20879FE800CE9F3D /* ViewModel.swift */; };
 		E16F7B6F2088443F00CE9F3D /* RxSwift+Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16F7B6E2088443F00CE9F3D /* RxSwift+Observable.swift */; };
+		E1A0FE9120AD7AC100044403 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A0FE9020AD7AC100044403 /* Log.swift */; };
+		E1A0FE9320AD80FD00044403 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A0FE9220AD80FD00044403 /* CustomCell.swift */; };
+		E1A0FE9920AD8E9000044403 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A0FE9820AD8E9000044403 /* UITableView+Extension.swift */; };
 		E1B74FCE2089EF10009ABE7E /* NilSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B74FCD2089EF10009ABE7E /* NilSwift.swift */; };
 		E1B74FD2208DF1D0009ABE7E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B74FD1208DF1D0009ABE7E /* API.swift */; };
 		E1D39F092088A77200D968C8 /* ApiManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D39F082088A77200D968C8 /* ApiManagerService.swift */; };
@@ -35,6 +40,8 @@
 		D84B21BA7A833C3BB7A773B5 /* Pods_UoocTeacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UoocTeacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11F8E072091D871008A17A4 /* UOCFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOCFirstViewController.swift; sourceTree = "<group>"; };
 		E11F8E0A20940AB1008A17A4 /* ThirdReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdReference.swift; sourceTree = "<group>"; };
+		E11F8E0F209AC271008A17A4 /* UIView+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shake.swift"; sourceTree = "<group>"; };
+		E11F8E1120A03D5B008A17A4 /* UOCThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOCThirdViewController.swift; sourceTree = "<group>"; };
 		E1310A6F208492A400144702 /* UoocTeacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UoocTeacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1310A72208492A400144702 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1310A79208492A600144702 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -52,6 +59,9 @@
 		E16F7B4420874C0A00CE9F3D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E16F7B6A20879FE800CE9F3D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		E16F7B6E2088443F00CE9F3D /* RxSwift+Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxSwift+Observable.swift"; sourceTree = "<group>"; };
+		E1A0FE9020AD7AC100044403 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		E1A0FE9220AD80FD00044403 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		E1A0FE9820AD8E9000044403 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		E1B74FCD2089EF10009ABE7E /* NilSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilSwift.swift; sourceTree = "<group>"; };
 		E1B74FD1208DF1D0009ABE7E /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		E1D39F082088A77200D968C8 /* ApiManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManagerService.swift; sourceTree = "<group>"; };
@@ -155,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				E16F7B6E2088443F00CE9F3D /* RxSwift+Observable.swift */,
+				E11F8E0F209AC271008A17A4 /* UIView+Shake.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -164,6 +175,7 @@
 			children = (
 				E1310A9A2084A9A100144702 /* UoocTeacher-Bridging-Header.h */,
 				E11F8E0A20940AB1008A17A4 /* ThirdReference.swift */,
+				E1A0FE9820AD8E9000044403 /* UITableView+Extension.swift */,
 			);
 			path = Reference;
 			sourceTree = "<group>";
@@ -171,6 +183,7 @@
 		E1310A882084955A00144702 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				E1A0FE9020AD7AC100044403 /* Log.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -191,6 +204,7 @@
 				E16F7B3E2087281400CE9F3D /* APIService.swift */,
 				E16F7B4420874C0A00CE9F3D /* Model.swift */,
 				E16F7B6A20879FE800CE9F3D /* ViewModel.swift */,
+				E1A0FE9220AD80FD00044403 /* CustomCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -228,6 +242,7 @@
 				E11F8E072091D871008A17A4 /* UOCFirstViewController.swift */,
 				E1DE1EE62085D3D30000FDBE /* UOCDetailViewController.swift */,
 				E16F7B4020872B6B00CE9F3D /* UOCSecondViewController.swift */,
+				E11F8E1120A03D5B008A17A4 /* UOCThirdViewController.swift */,
 				E1310AA52084B27000144702 /* UOCTabbarViewController.swift */,
 				E1310AA72084B35500144702 /* UOCNavigationViewController.swift */,
 			);
@@ -331,6 +346,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-UoocTeacher/Pods-UoocTeacher-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -342,6 +358,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -349,6 +366,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -360,6 +378,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -391,17 +410,22 @@
 			files = (
 				E1310AA42084B0BB00144702 /* BaseViewController.swift in Sources */,
 				E1DE1EE72085D3D30000FDBE /* UOCDetailViewController.swift in Sources */,
+				E1A0FE9320AD80FD00044403 /* CustomCell.swift in Sources */,
 				E1310A8F208496EE00144702 /* ImageAsset.swift in Sources */,
+				E11F8E10209AC271008A17A4 /* UIView+Shake.swift in Sources */,
 				E16F7B4520874C0A00CE9F3D /* Model.swift in Sources */,
 				E1310A73208492A400144702 /* AppDelegate.swift in Sources */,
 				E1310AA12084ABDA00144702 /* QMUIConfigurationTemplate.m in Sources */,
 				E1310AA62084B27000144702 /* UOCTabbarViewController.swift in Sources */,
+				E1A0FE9120AD7AC100044403 /* Log.swift in Sources */,
 				1D9B91B52089F931001216FC /* UoocConst.swift in Sources */,
 				E16F7B4120872B6B00CE9F3D /* UOCSecondViewController.swift in Sources */,
 				E1B74FCE2089EF10009ABE7E /* NilSwift.swift in Sources */,
 				E16F7B3F2087281400CE9F3D /* APIService.swift in Sources */,
+				E11F8E1220A03D5B008A17A4 /* UOCThirdViewController.swift in Sources */,
 				E11F8E0B20940AB1008A17A4 /* ThirdReference.swift in Sources */,
 				E1D39F092088A77200D968C8 /* ApiManagerService.swift in Sources */,
+				E1A0FE9920AD8E9000044403 /* UITableView+Extension.swift in Sources */,
 				E16F7B6B20879FE800CE9F3D /* ViewModel.swift in Sources */,
 				E16F7B6F2088443F00CE9F3D /* RxSwift+Observable.swift in Sources */,
 				E1B74FD2208DF1D0009ABE7E /* API.swift in Sources */,
