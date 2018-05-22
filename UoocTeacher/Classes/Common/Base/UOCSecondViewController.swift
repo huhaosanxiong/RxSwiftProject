@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class UOCSecondViewController: BaseViewController {
+class UOCSecondViewController: BaseViewController, Refreshable {
     
     var disposeBag : DisposeBag = DisposeBag()
     
@@ -68,7 +68,7 @@ class UOCSecondViewController: BaseViewController {
     
     override func bindViewModel() {
         
-        
+        /*
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
             self.VM.requestAction(isReloadData: true)
         })
@@ -88,18 +88,20 @@ class UOCSecondViewController: BaseViewController {
                 break
             }
         }).disposed(by: disposeBag)
+ */
         
-        /*
-        VM.dataSource.asObservable().bind(to: tableView.rx.items) { (tableView, row, element) in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
-            cell.textLabel?.text = "\(element.activity1_title!) @ row \(row)"
-            return cell
-            }
-            .disposed(by: disposeBag)
-        */
+        let refreshHeader = initRefreshHeader(tableView) { [weak self] in
+            self?.VM.requestAction(isReloadData: true)
+        }
+        let refreshFooter = initRefreshFooter(tableView) { [weak self] in
+            self?.VM.requestAction(isReloadData: false)
+        }
+        
+        self.VM.autoSetRefreshControlStatus(header: refreshHeader, footer: refreshFooter).disposed(by: disposeBag)
+        
         
         // Configure
-        let dataSource = RxTableViewSectionedReloadDataSource<SectionOfCustomData>(configureCell: { [unowned self] (dataSource, tableView, indexPath, model) -> UITableViewCell in
+        let dataSource = RxTableViewSectionedReloadDataSource<SectionOfCustomData>(configureCell: {(dataSource, tableView, indexPath, model) -> UITableViewCell in
 
             let cell = tableView.cell(ofType: MyTableCell.self)
             cell.textLabel?.text = "row \(indexPath.row) -> \(model.activity1_title!)"
@@ -110,7 +112,7 @@ class UOCSecondViewController: BaseViewController {
             return cell
         })
         
-        
+        //bind
         VM.rxDataSource.asObservable()
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)

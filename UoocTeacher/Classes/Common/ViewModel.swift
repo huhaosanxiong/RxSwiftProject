@@ -8,16 +8,9 @@
 
 import Foundation
 
-enum RefreshStatus {
-    case none
-//    case beginHeaderRefresh
-    case endHeaderRefresh
-//    case beginFooterRefresh
-    case endFooterRefresh
-    case noMoreData
-}
 
-class ViewModel {
+
+class ViewModel : RefreshProtocol {
     
     let dataSource : Variable<[ActivityModel]> = Variable([])
     
@@ -42,7 +35,7 @@ extension ViewModel {
         requestCommond.subscribe(onNext:{ [weak self] isReloadData in
 
             if isReloadData { self?.page = 1 }
-            print("page = \((self?.page)!)")
+            DLog("page = \((self?.page)!)")
                 //假设下面的请求需要用到page
             APIProvider.rx.request(.appOperation(code: "app_course"))
                 .filterSuccessfulStatusCodes()
@@ -53,21 +46,21 @@ extension ViewModel {
 
                     self?.dataSource.value = isReloadData ? model.app_course : (self?.dataSource.value)! + model.app_course
 
-                    if model.app_course.count == 0 { self?.refreshStatus.value = .noMoreData }
-
                     SVProgressHUD.showSuccess(withStatus: "Load Success")
 
                     self?.refreshStatus.value = isReloadData ? .endHeaderRefresh : .endFooterRefresh
+                    
+                    if model.app_course.count == 0 { self?.refreshStatus.value = .noMoreData }
 
                 }, onError: { error in
                     //处理throw异常
                     guard let rxError = error as? RxSwiftMoyaError else { return }
                     switch rxError {
                     case .UnexpectedResult(let resultCode, let resultMsg):
-                        print("code = \(resultCode!),msg = \(resultMsg!)")
+                        DLog("code = \(resultCode!),msg = \(resultMsg!)")
                         SVProgressHUD.showError(withStatus: "code = \(resultCode!),msg = \(resultMsg!)")
                     default :
-                        print("网络故障")
+                        DLog("网络故障")
                         SVProgressHUD.showError(withStatus: "网络故障")
                     }
                     self?.refreshStatus.value = isReloadData ? .endHeaderRefresh : .endFooterRefresh
@@ -86,7 +79,7 @@ extension ViewModel {
     func requestAction(isReloadData : Bool) {
         
         if isReloadData {self.page = 1}
-        
+        DLog("page = \(self.page)")
         APIProvider.rx.request(.appOperation(code: "app_course"))
             .filterSuccessfulStatusCodes()
             .asObservable()
@@ -98,23 +91,25 @@ extension ViewModel {
                 self?.dataSource.value = isReloadData ? model.app_course : (self?.dataSource.value)! + model.app_course
                 
                 //RxDataSources库
-                self?.rxDataSource.value = isReloadData ? [SectionOfCustomData(header:"",items:model.app_course)] : [SectionOfCustomData(header:"",items:(self?.rxDataSource.value.first?.items)! + model.app_course)]
-                
-                if model.app_course.count == 0 { self?.refreshStatus.value = .noMoreData }
+                self?.rxDataSource.value = isReloadData ?
+                    [SectionOfCustomData(header:"",items:model.app_course)] :
+                    [SectionOfCustomData(header:"",items:(self?.rxDataSource.value.first?.items)! + model.app_course)]
                 
                 SVProgressHUD.showSuccess(withStatus: "Load Success")
                 
                 self?.refreshStatus.value = isReloadData ? .endHeaderRefresh : .endFooterRefresh
+                
+                if model.app_course.count == 0 { self?.refreshStatus.value = .noMoreData }
                 
             }, onError: { [weak self] error in
                 //处理throw异常
                 guard let rxError = error as? RxSwiftMoyaError else { return }
                 switch rxError {
                 case .UnexpectedResult(let resultCode, let resultMsg):
-                    print("code = \(resultCode!),msg = \(resultMsg!)")
+                    DLog("code = \(resultCode!),msg = \(resultMsg!)")
                     SVProgressHUD.showError(withStatus: "code = \(resultCode!),msg = \(resultMsg!)")
                 default :
-                    print("网络故障")
+                    DLog("网络故障")
                     SVProgressHUD.showError(withStatus: "网络故障")
                 }
                 self?.refreshStatus.value = isReloadData ? .endHeaderRefresh : .endFooterRefresh

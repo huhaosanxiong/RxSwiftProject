@@ -31,6 +31,7 @@
 		E1A0FE9920AD8E9000044403 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A0FE9820AD8E9000044403 /* UITableView+Extension.swift */; };
 		E1B74FCE2089EF10009ABE7E /* NilSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B74FCD2089EF10009ABE7E /* NilSwift.swift */; };
 		E1B74FD2208DF1D0009ABE7E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B74FD1208DF1D0009ABE7E /* API.swift */; };
+		E1CDE32D20B3C8E2009E04D1 /* MJRefreshableTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDE32C20B3C8E2009E04D1 /* MJRefreshableTool.swift */; };
 		E1D39F092088A77200D968C8 /* ApiManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D39F082088A77200D968C8 /* ApiManagerService.swift */; };
 		E1DE1EE72085D3D30000FDBE /* UOCDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DE1EE62085D3D30000FDBE /* UOCDetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 		E1A0FE9820AD8E9000044403 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		E1B74FCD2089EF10009ABE7E /* NilSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilSwift.swift; sourceTree = "<group>"; };
 		E1B74FD1208DF1D0009ABE7E /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		E1CDE32C20B3C8E2009E04D1 /* MJRefreshableTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJRefreshableTool.swift; sourceTree = "<group>"; };
 		E1D39F082088A77200D968C8 /* ApiManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManagerService.swift; sourceTree = "<group>"; };
 		E1DE1EE62085D3D30000FDBE /* UOCDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOCDetailViewController.swift; sourceTree = "<group>"; };
 		E2A99EBC67F6E3CD7AC3CDF1 /* Pods-UoocTeacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UoocTeacher.release.xcconfig"; path = "Pods/Target Support Files/Pods-UoocTeacher/Pods-UoocTeacher.release.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				E1A0FE9020AD7AC100044403 /* Log.swift */,
+				E1CDE32C20B3C8E2009E04D1 /* MJRefreshableTool.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				E1310AA12084ABDA00144702 /* QMUIConfigurationTemplate.m in Sources */,
 				E1310AA62084B27000144702 /* UOCTabbarViewController.swift in Sources */,
 				E1A0FE9120AD7AC100044403 /* Log.swift in Sources */,
+				E1CDE32D20B3C8E2009E04D1 /* MJRefreshableTool.swift in Sources */,
 				1D9B91B52089F931001216FC /* UoocConst.swift in Sources */,
 				E16F7B4120872B6B00CE9F3D /* UOCSecondViewController.swift in Sources */,
 				E1B74FCE2089EF10009ABE7E /* NilSwift.swift in Sources */,
