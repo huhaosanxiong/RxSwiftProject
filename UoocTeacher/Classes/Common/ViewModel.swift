@@ -95,27 +95,27 @@ extension ViewModel {
                     [SectionOfCustomData(header:"",items:model.app_course)] :
                     [SectionOfCustomData(header:"",items:(self?.rxDataSource.value.first?.items)! + model.app_course)]
                 
-                SVProgressHUD.showSuccess(withStatus: "Load Success")
-                
                 self?.refreshStatus.value = isReloadData ? .endHeaderRefresh : .endFooterRefresh
                 
                 if model.app_course.count == 0 { self?.refreshStatus.value = .noMoreData }
                 
             }, onError: { [weak self] error in
                 //处理throw异常
-                guard let rxError = error as? RxSwiftMoyaError else { return }
+                DLog("\(error.localizedDescription)")
+                self?.refreshStatus.value = isReloadData ? .endHeaderRefresh : .endFooterRefresh
+                guard let rxError = error as? RxSwiftMoyaError else {
+                    SVProgressHUD.showError(withStatus: error.localizedDescription)
+                    return
+                }
                 switch rxError {
                 case .UnexpectedResult(let resultCode, let resultMsg):
-                    DLog("code = \(resultCode!),msg = \(resultMsg!)")
                     SVProgressHUD.showError(withStatus: "code = \(resultCode!),msg = \(resultMsg!)")
                 default :
                     DLog("网络故障")
                     SVProgressHUD.showError(withStatus: "网络故障")
-                }
-                self?.refreshStatus.value = isReloadData ? .endHeaderRefresh : .endFooterRefresh
-                
+                }  
             }, onCompleted: {
-                
+
             }).disposed(by: disposebag)
     }
     

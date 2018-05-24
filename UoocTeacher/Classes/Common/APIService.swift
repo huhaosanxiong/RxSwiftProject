@@ -11,30 +11,21 @@ import Foundation
 
 let APIProvider = MoyaProvider<APIService>.init(requestClosure: requestClosure,
                                                 plugins:[NetworkLoggerPlugin(verbose: true, responseDataFormatter: JSONResponseDataFormatter),
-                                                         RequestLoadingPlugin.init(viewController: (UIApplication.shared.keyWindow?.rootViewController)!)])
+                                                         RequestLoadingPlugin()])
 
 public final class RequestLoadingPlugin: PluginType {
     
-    private let viewController: UIViewController
-    
-    
-    init(viewController: UIViewController) {
-        self.viewController = viewController
-        
-    }
-    
-    
     public func willSend(_ request: RequestType, target: TargetType) {
         // show loading
-        print("开始请求")
+        DLog("开始请求")
+//        SVProgressHUD.show(withStatus: "Loading..")
         
-
     }
     
     public func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
         // hide loading
-        print("请求完成")
-
+        DLog("请求完成")
+//        SVProgressHUD.dismiss()
     }
 }
 
