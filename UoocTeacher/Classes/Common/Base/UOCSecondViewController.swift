@@ -50,46 +50,15 @@ class UOCSecondViewController: BaseViewController, Refreshable {
             make.edges.equalTo(view).inset(UIEdgeInsets.zero)
         }
         
-//        action1()
-//        action2()
-//        action3()
-//        action4()
-//        action5()
-//        action6()
-//        action7()
-//        action8()
-//        action9()
-//        action10()
-        
         // 加载数据
         tableView.mj_header.beginRefreshing()
  
     }
     
+    ///重写父类方法
     override func bindViewModel() {
         
-        /*
-        tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
-            self.VM.requestAction(isReloadData: true)
-        })
-        tableView.mj_footer = MJRefreshBackNormalFooter(refreshingBlock: {
-            self.VM.requestAction(isReloadData: false)
-        })
-        
-        VM.refreshStatus.asObservable().subscribe(onNext: {[weak self] status in
-            switch status {
-            case .endHeaderRefresh:
-                self?.tableView.mj_header.endRefreshing()
-            case .endFooterRefresh:
-                self?.tableView.mj_footer.endRefreshing()
-            case .noMoreData:
-                self?.tableView.mj_footer.endRefreshingWithNoMoreData()
-            default:
-                break
-            }
-        }).disposed(by: disposeBag)
- */
-        
+        //配置上下拉刷新
         let refreshHeader = initRefreshHeader(tableView) { [weak self] in
             self?.VM.requestAction(isReloadData: true)
         }
@@ -123,10 +92,10 @@ class UOCSecondViewController: BaseViewController, Refreshable {
         }).disposed(by: disposeBag)
         
         //获取选中项的索引
-        tableView.rx.itemSelected.subscribe(onNext: {indexPath in
+        tableView.rx.itemSelected.subscribe(onNext: {[unowned self] indexPath in
             print("选中项的indexPath为：\(indexPath)")
-//            let cell = self?.tableView.cellForRow(at: indexPath)
-//            cell?.shake()
+            let cell = self.tableView.cellForRow(at: indexPath)
+            cell?.shake()
         }).disposed(by: disposeBag)
         
         Observable.zip(tableView.rx.modelSelected(ActivityModel.self),tableView.rx.itemSelected)
@@ -148,92 +117,68 @@ class UOCSecondViewController: BaseViewController, Refreshable {
         //必须实现UITableViewDelegate 不然报错
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
     }
-        
-       @objc func action1() {
+    
+    
+    
+    /// 无Rx 的Moya请求
+    func action1() {
         
         req.forEach { $0.cancel()}
         
-          let request = provider.request(.appOperation(code: "app_course")) { (result) in
-                switch result {
-                case let .success(moyaResponse):
-                    let data = moyaResponse.data
-                    let statusCode = moyaResponse.statusCode
-                    do {
-                        let dic = try moyaResponse.mapJSON()
-                        print("dic = \(dic)")
-                    }catch {
-                        
-                    }
+        let request = provider.request(.appOperation(code: "app_course")) { (result) in
+            switch result {
+            case let .success(moyaResponse):
+                let data = moyaResponse.data
+                let statusCode = moyaResponse.statusCode
+                do {
+                    let dic = try moyaResponse.mapJSON()
+                    print("dic = \(dic)")
+                }catch {
                     
-                    print("statusCode = \(statusCode)")
-                    print("data = \(data)")
-                    
-                    
-                // do something with the response data or statusCode
-                case let .failure(error):
-                    print(error)
                 }
+                
+                print("statusCode = \(statusCode)")
+                print("data = \(data)")
+                
+                
+            // do something with the response data or statusCode
+            case let .failure(error):
+                print(error)
             }
+        }
         
         req.append(request)
-        }
+    }
+    
+    func action2() {
         
-        func action2() {
-            
-            
-        }
         
-        func action3() {
-            
-            VM.getAppOperation("app_course").subscribe(onNext: { (array) in
-                print("array = \(array)")
-                for model in array {
-                    print(model.activity1_title ?? "none")
-                }
-            }, onError: { (error) in
-                print("error = \(error)")
-            }, onCompleted: {
-                print("complete")
-            }).disposed(by: disposeBag)
-        }
+    }
+    
+    
+    func action3() {
         
-        func action4() {
-            
-            VM.getAppOperationByMapObject("app_course").retry(3)
-                .subscribe(onNext: { (model) in
-                    print("model = \(model)")
-                    for model in model.app_course {
-                        print(model.activity1_title ?? "none")
-                    }
-                }, onError: { (error) in
-                    //处理throw异常
-                    guard let rxError = error as? RxSwiftMoyaError else { return }
-                    switch rxError {
-                    case .UnexpectedResult(let resultCode, let resultMsg):
-                        print("code = \(resultCode!),msg = \(resultMsg!)")
-                    default :
-                        print("网络故障")
-                    }
-                    //            if case let RxSwiftMoyaError.UnexpectedResult(resultCode: code, resultMsg: msg) = error {
-                    //                print("code = \(code!),msg = \(msg!)")
-                    //            }else{
-                    //                print("网络故障")
-                    //            }
-                    print(error)
-                }, onCompleted: {
-                    
-                }).disposed(by: disposeBag)
-        }
+        VM.getAppOperation("app_course").subscribe(onNext: { (array) in
+            print("array = \(array)")
+            for model in array {
+                print(model.activity1_title ?? "none")
+            }
+        }, onError: { (error) in
+            print("error = \(error)")
+        }, onCompleted: {
+            print("complete")
+        }).disposed(by: disposeBag)
+    }
+    
+    func action4() {
         
-        @objc func action5() {
-            
-            
-            VM.getAppOperationByMapObjectAsSingle("app_course").subscribe(onSuccess: { (model) in
+        VM.getAppOperationByMapObject("app_course").retry(3)
+            .subscribe(onNext: { (model) in
                 print("model = \(model)")
                 for model in model.app_course {
                     print(model.activity1_title ?? "none")
                 }
-            }) { (error) in
+            }, onError: { (error) in
                 //处理throw异常
                 guard let rxError = error as? RxSwiftMoyaError else { return }
                 switch rxError {
@@ -243,41 +188,64 @@ class UOCSecondViewController: BaseViewController, Refreshable {
                     print("网络故障")
                 }
                 print(error)
-                }.disposed(by: disposeBag)
-        }
+            }, onCompleted: {
+                
+            }).disposed(by: disposeBag)
+    }
+    
+    func action5() {
+        
+        
+        VM.getAppOperationByMapObjectAsSingle("app_course").subscribe(onSuccess: { (model) in
+            print("model = \(model)")
+            for model in model.app_course {
+                print(model.activity1_title ?? "none")
+            }
+        }) { (error) in
+            //处理throw异常
+            guard let rxError = error as? RxSwiftMoyaError else { return }
+            switch rxError {
+            case .UnexpectedResult(let resultCode, let resultMsg):
+                print("code = \(resultCode!),msg = \(resultMsg!)")
+            default :
+                print("网络故障")
+            }
+            print(error)
+            }.disposed(by: disposeBag)
+    }
+    
+    
+    
+    
+    func action6() {
+        
+        textField.frame = CGRect.init(x: 0, y: 64, width: 100, height:30)
+        view.addSubview(textField)
+        
+        let text = textField.rx.text.orEmpty.asObservable()
+        
+        let passwordVaild = text.map{ $0.count>9 }
+        let passwordHidden = textField.rx.isHidden
+        
+        passwordVaild.subscribeOn(MainScheduler.instance).observeOn(MainScheduler.instance).bind(to: passwordHidden).disposed(by: disposeBag)
+        
+        Observable.of(1,2,3).reduce(10, accumulator: +).subscribe(onNext: {print($0)}).disposed(by: disposeBag)
         
         
         
+    }
+    
+    func action7() {
         
-        func action6() {
-            
-            textField.frame = CGRect.init(x: 0, y: 64, width: 100, height:30)
-            view.addSubview(textField)
-            
-            let text = textField.rx.text.orEmpty.asObservable()
-            
-            let passwordVaild = text.map{ $0.count>9 }
-            let passwordHidden = textField.rx.isHidden
-            
-            passwordVaild.subscribeOn(MainScheduler.instance).observeOn(MainScheduler.instance).bind(to: passwordHidden).disposed(by: disposeBag)
-            
-            Observable.of(1,2,3).reduce(10, accumulator: +).subscribe(onNext: {print($0)}).disposed(by: disposeBag)
-            
-            
-            
-        }
+        let button = UIButton()
         
-        func action7() {
-            
-            let button = UIButton()
-            
-            button.rx.tap
-                .flatMap{ self.VM.getAppOperationByMapObject("app_course") }
-                .subscribe(onNext: { [weak self] model in
-                    print("model = \(model)")
-                    for model in model.app_course {
-                        print(model.activity1_title ?? "none")
-                    }
+        button.rx.tap
+            .flatMap{ self.VM.getAppOperationByMapObject("app_course") }
+            .subscribe(onNext: { model in
+                print("model = \(model)")
+                for model in model.app_course {
+                    print(model.activity1_title ?? "none")
+                }
                 }, onError: { (error) in
                     //处理throw异常
                     guard let rxError = error as? RxSwiftMoyaError else { return }
@@ -288,56 +256,16 @@ class UOCSecondViewController: BaseViewController, Refreshable {
                         print("网络故障")
                     }
                     print(error)
-                }, onCompleted: {
-
-                }).disposed(by: disposeBag)
-
-        }
-        
-        
-        func action8() {
-            
-            VM.dataSource.asObservable().subscribe(onNext: { arr in
-                print("arr = \(arr)")
+            }, onCompleted: {
+                
             }).disposed(by: disposeBag)
-            
-            
-        }
-    
-    func action9() {
-        
-        view.addSubview(tableView)
-    
-        VM.dataSource.asObservable().bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { (row, element, cell) in
-            
-            cell.textLabel?.text = "row \(row) -> \(element.activity1_title!)"
-            }
-            .disposed(by: disposeBag)
         
     }
-    
-    func action10() {
-        
-        let button = UIButton.init(frame: CGRect.init(x: 0, y: 64, width: 100, height: 30))
-        button.backgroundColor = UIColor.blue
-        button.alpha = 0.4
-        view.addSubview(button)
-        
-        let ob = button.rx.tap
-            .flatMapLatest{self.VM.getAppOperationByMapObjectAsDriver("app_course")}
-        
-        
-        ob.bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { (row, element, cell) in
-            
-            cell.textLabel?.text = "row \(row) -> \(element.activity1_title!)"
-            }
-            .disposed(by: disposeBag)
 
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
     }
     
 }

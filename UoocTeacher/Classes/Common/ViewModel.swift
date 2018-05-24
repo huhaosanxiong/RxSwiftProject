@@ -30,52 +30,7 @@ class ViewModel : RefreshProtocol {
     
 extension ViewModel {
     
-    func loadData()  {
-
-        requestCommond.subscribe(onNext:{ [weak self] isReloadData in
-
-            if isReloadData { self?.page = 1 }
-            DLog("page = \((self?.page)!)")
-                //假设下面的请求需要用到page
-            APIProvider.rx.request(.appOperation(code: "app_course"))
-                .filterSuccessfulStatusCodes()
-                .asObservable()
-                .mapObject(type: AppCourseModel.self)
-                .subscribe(onNext: { model in
-                    self?.page += 1
-
-                    self?.dataSource.value = isReloadData ? model.app_course : (self?.dataSource.value)! + model.app_course
-
-                    SVProgressHUD.showSuccess(withStatus: "Load Success")
-
-                    self?.refreshStatus.value = isReloadData ? .endHeaderRefresh : .endFooterRefresh
-                    
-                    if model.app_course.count == 0 { self?.refreshStatus.value = .noMoreData }
-
-                }, onError: { error in
-                    //处理throw异常
-                    guard let rxError = error as? RxSwiftMoyaError else { return }
-                    switch rxError {
-                    case .UnexpectedResult(let resultCode, let resultMsg):
-                        DLog("code = \(resultCode!),msg = \(resultMsg!)")
-                        SVProgressHUD.showError(withStatus: "code = \(resultCode!),msg = \(resultMsg!)")
-                    default :
-                        DLog("网络故障")
-                        SVProgressHUD.showError(withStatus: "网络故障")
-                    }
-                    self?.refreshStatus.value = isReloadData ? .endHeaderRefresh : .endFooterRefresh
-
-                }, onCompleted: {
-
-                }).disposed(by: (self?.disposebag)!)
-        }).disposed(by: disposebag)
-
-        
-
-        
-    }
-    
-    
+    ///目前可行写法
     func requestAction(isReloadData : Bool) {
         
         if isReloadData {self.page = 1}
@@ -118,6 +73,23 @@ extension ViewModel {
 
             }).disposed(by: disposebag)
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     //手动转 ，与oc类似
     func getAppOperation(_ code: String) -> Observable<[ActivityModel]> {
@@ -172,6 +144,7 @@ extension ViewModel {
         .mapObject(type: AppCourseModel.self)
     }
     
+    //只会执行一次
     func getAppOperationByMapObjectAsSingle(_ code :String) -> Single<AppCourseModel> {
         return APIProvider.rx.request(.appOperation(code: code))
             .asObservable()
@@ -180,7 +153,7 @@ extension ViewModel {
             .asSingle()
     }
     
-    
+    //转成driver
     func getAppOperationByMapObjectAsDriver(_ code :String) -> Driver<[ActivityModel]> {
         return APIProvider.rx.request(.appOperation(code: code))
             .asObservable()
